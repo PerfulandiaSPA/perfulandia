@@ -33,5 +33,7 @@ implementar al menos 3 test unitarios con Jest en al menos dos págnas (6 test m
 Suba su proyecto comprimido en .zip a esta actividad SIN NODE-MODULES por favor.
 
 Pa iniciar sesión en git xd
+
 git config --global user.name "John Doe"
+
 git config --global user.email johndoe@example.com
