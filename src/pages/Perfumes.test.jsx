@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import Perfumes from './Perfumes';
 
 jest.mock('../context/AppContext', () => ({
-    useCart: () => ({ 
+    useCart: () => ({
         addToCart: jest.fn()
     }),
 }));
