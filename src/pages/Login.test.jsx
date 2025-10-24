@@ -1,44 +1,45 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Contact from './Login';
+import Login from './Login';
 
 describe('Login Component', () => {
     
     test('el componente Login se monta correctamente', () => {
-        render(<Contact />);
+        render(<Login />);
 
         // Comprueba que el título esté en el documento
-        const titulo = screen.getByRole('heading', { name: /login/i });
+        const titulo = screen.getByRole('heading', { name: /iniciar sesión/i });
         expect(titulo).toBeInTheDocument();
 
         // Comprueba que existan los elementos principales del formulario
         expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-        expect(screen.getByLabelText(/´password/i)).toBeInTheDocument();
+        expect(screen.getByLabelText(/contraseña/i)).toBeInTheDocument();
 
-        // Y que el botón de enviar esté presente
+        // Y que el botón continuar esté presente
         expect(screen.getByRole('button', { name: /continuar/i })).toBeInTheDocument();
     });
 
     test('muestra errores cuando email y/o password están incorrectos/vacíos', async () => {
-        render(<Contact />);
+        render(<Login />);
 
         // Click en "Continuar" sin rellenar nada
         const continuarBtn = screen.getByRole('button', { name: /continuar/i });
         await userEvent.click(continuarBtn);
 
-        expect(screen.getByText(/El correo es inválido/i)).toBeInTheDocument();
-        expect(screen.getByText(/Contraseña incorrecta/i)).toBeInTheDocument();
+        expect(screen.getByText(/el correo es obligatorio y debe ser válido/i)).toBeInTheDocument();
+        expect(screen.getByText(/la contraseña es obligatoria/i)).toBeInTheDocument();
+        expect(screen.queryByText(/inicio de sesión exitoso/i)).not.toBeInTheDocument();
+
     });
     
-    test('envío válido muestra mensaje de éxito', async () => {
-        render(<Contact />);
+    test('al ingresar datos válidos y presionar continuar, muestra inicio de sesión exitoso', async () => {
+        render(<Login />);
 
-        await userEvent.type(screen.getByLabelText(/correo/i), 'ada@example.com');
-        await userEvent.type(screen.getByLabelText(/password/i), '');
-        await userEvent.type(screen.getByLabelText(/mensaje/i), '');
+        await userEvent.type(screen.getByLabelText(/email/i), 'user@email.com');
+        await userEvent.type(screen.getByLabelText(/contraseña/i), '1234');
 
-        await userEvent.click(screen.getByRole('button', { name: /cotinuar/i }));
+        await userEvent.click(screen.getByRole('button', { name: /continuar/i }));
 
-        expect(screen.getByText(/¡Mensaje enviado/i)).toBeInTheDocument();
+        expect(screen.getByText(/¡inicio de sesión exitoso/i)).toBeInTheDocument();
     });
 });

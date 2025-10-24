@@ -10,13 +10,13 @@ function Login(){
         const data = new FormData(e.currentTarget);
         const email = (data.get('email') || '').trim();
         const password = (data.get('password') || '').trim();
-        const message = (data.get('message') || '').trim();
 
         const errs = [];
-        if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.push('El correo es inválido');
-        if(!password) errs.push('Contraseña incorrecta');
-        if(!message) errs.push('Falta completar campos!');
+        if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.push('El correo es obligatorio y debe ser válido');
+        if(!password) errs.push('La contraseña es obligatoria');
 
+        setErrors(errs);
+        setMsg(errs.length === 0 ? '¡Inicio de sesión exitoso!' : '');
     };
 
     return (
@@ -26,21 +26,21 @@ function Login(){
             {msg && <Alert variant="success">{msg}</Alert>}
             {errors.length > 0 && <Alert variant="danger">{errors.join('. ')}</Alert>}
 
+            <Form onSubmit={onSubmit} noValidate>
             <Form.Group className="mb-3" controlId="email">
                 <Form.Label>EMAIL:</Form.Label>
                 <Form.Control type="email" name="email" required />
             </Form.Group>
 
-            <Form onSubmit={onSubmit} noValidate>
             <Form.Group className="mb-3" controlId="password">
                 <Form.Label>CONTRASEÑA:</Form.Label>
-                <Form.Control name="password" required />
+                <Form.Control type="password" name="password" required />
             </Form.Group>            
 
             <Button type="submit">CONTINUAR</Button>
             </Form>
         </Container>
-        </main>
+      </main>
     );
 }
 
