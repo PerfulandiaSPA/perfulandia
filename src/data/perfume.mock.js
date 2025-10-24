@@ -58,3 +58,4 @@ export const PERFUMES_LIST = [
         category: 
         imageUrl: 
     }
+];

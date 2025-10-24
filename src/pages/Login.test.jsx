@@ -40,6 +40,6 @@ describe('Login Component', () => {
 
         await userEvent.click(screen.getByRole('button', { name: /continuar/i }));
 
-        expect(screen.getByText(/¡inicio de sesión exitoso/i)).toBeInTheDocument();
+        expect(screen.getByText(/¡inicio de sesión exitoso!/i)).toBeInTheDocument();
     });
 });
