@@ -1,7 +1,7 @@
-// src/data/gaming.mock.js
+// src/data/perfume.mock.js
 export const CATEGORIES = ['']; //categorías de algún tipo para filtrar perfumes 
 
-export const GAMING_PRODUCTS = [
+export const PERFUMES_LIST = [
     {
         id: 1,
         name: 
