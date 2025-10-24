@@ -2,9 +2,8 @@ import { useMemo, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useCart } from '../context/AppContext';
 import { PERFUMES_LIST, CATEGORIES } from '../data/perfume.mock';
-import Filters from '../components/products/Filters';
-import ProductGrid from '../components/products/ProductGrid';
-import { PERFUMES_LIST } from '../data/perfume.mock';
+import Filters from '../components/perfumes/Filters';
+import ProductGrid from '../components/perfumes/PerfumeGrid';
 
 export default function Perfumes() {
     const { addToCart } = useCart();
