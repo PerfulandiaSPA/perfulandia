@@ -8,7 +8,8 @@ function NavBar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand as={Link} to="/sources/p_3.png"></Navbar.Brand>  {/* Usamos Link para el logo */}
+        <Navbar.Brand as={Link} to="/">  <img src="/images/P1.png" alt="Logo" style={{ width: '200px' }} /></Navbar.Brand>  {/* Usamos Link para el logo */}
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -26,7 +27,7 @@ function NavBar() {
           </Nav>
         </Navbar.Collapse>
       </Container>
-    </Navbar>
+    </Navbar >
   );
 }
 

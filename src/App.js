@@ -1,14 +1,18 @@
 import React from 'react';
 
-import AppRoutes from './app/AppRoutes'; // ✅ ruta corregida
+import AppRoutes from './app/AppRoutes';
 import NavBar from './components/NavBar';
+import { AppProvider } from './context/AppContext';
 
 
 function App() {
   return (
     <div className='App'>
-      <NavBar />
-      <AppRoutes />
+      {/* AppProvider Engloba todas las pantallas lo que quiere decir que es una funcion Global */}
+      <AppProvider>
+        <NavBar />
+        <AppRoutes />
+      </AppProvider>
     </div>
   );
 }
