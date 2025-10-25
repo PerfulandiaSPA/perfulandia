@@ -37,3 +37,7 @@ Pa iniciar sesión en git xd
 git config --global user.name "John Doe"
 
 git config --global user.email johndoe@example.com
+
+link informe:
+
+https://docs.google.com/document/d/13qzGnO3i0_-Iq7hHQQZYeRhjsIE0FHYY6h--uANhz9Q/edit?tab=t.0
