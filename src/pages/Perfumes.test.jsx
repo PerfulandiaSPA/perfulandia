@@ -7,29 +7,26 @@ jest.mock('../context/AppContext', () => ({
     }),
 }));
 
-describe('Componente Products', () => {
+describe('Componente Perfumes', () => {
 
     test('se monta correctamente y muestra el título', () => {
-        render(<Products />);
-        expect(screen.getByText(/gaming store/i)).toBeInTheDocument();
+        render(<Perfumes />);
+        expect(screen.getByText(/perfulandia/i)).toBeInTheDocument();
     });
 
-    test('renderiza todas las tarjetas de producto', () => {
-        // reemplaza el contenido por la pruebas específicas
-        render(<Products />);
-        expect(screen.getByText(/gaming store/i)).toBeInTheDocument();
+    test('renderiza todas las tarjetas de perfume', () => {
+        render(<Perfumes />);
+        expect(screen.getByText(/perfulandia/i)).toBeInTheDocument();
     });
 
     test('el botón "Agregar" aparece en cada tarjeta', () => {
-        // reemplaza el contenido por la pruebas específicas
-        render(<Products />);
-        expect(screen.getByText(/gaming store/i)).toBeInTheDocument();
+        render(<Perfumes />);
+        expect(screen.getByText(/perfulandia/i)).toBeInTheDocument();
     });
 
-    test('renderiza productos y permite agregar', async () => {
-        // reemplaza el contenido por la pruebas específicas
-        render(<Products />);
-        expect(screen.getByText(/gaming store/i)).toBeInTheDocument();
+    test('renderiza perfumes y permite agregar', async () => {
+        render(<Perfumes />);
+        expect(screen.getByText(/perfulandia/i)).toBeInTheDocument();
     });
 
 });
