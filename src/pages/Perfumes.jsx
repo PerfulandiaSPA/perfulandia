@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import { useCart } from '../context/AppContext';
 import { PERFUMES_LIST, CATEGORIES } from '../data/perfume.mock';  // Solo una importación
 import Filters from '../components/perfumes/Filters';
-import ProductGrid from '../components/perfumes/ProductGrid';
+import PerfumeGrid from '../components/perfumes/PerfumeGrid';
 
 export default function Perfumes() {
     const { addToCart } = useCart();
@@ -28,7 +28,7 @@ export default function Perfumes() {
                     total={PERFUMES_LIST.length}
                 />
 
-                <ProductGrid items={list} onAdd={addToCart} />
+                <PerfumeGrid items={list} onAdd={addToCart} />
             </Container>
         </main>
     );

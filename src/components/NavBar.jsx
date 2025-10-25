@@ -8,12 +8,13 @@ function NavBar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand as={Link} to="/">Home</Navbar.Brand>  {/* Usamos Link para el logo */}
+        <Navbar.Brand as={Link} to="/sources/p_3.png"></Navbar.Brand>  {/* Usamos Link para el logo */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Home</Nav.Link>  {/* Usamos Link para los enlaces */}
             <Nav.Link as={Link} to="/login">Login</Nav.Link>  {/* Enlace para login */}
+            <Nav.Link as={Link} to="/perfumes">Perfumes</Nav.Link>  {/* Enlace para login */}
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
 
               <NavDropdown.Item as={Link} to="/action/3.1">Action</NavDropdown.Item>
