@@ -20,7 +20,7 @@ function OffcanvasExample() {
                             position="end"
                         >
                             <Offcanvas.Header closeButton>
-                                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} className='titulo_perfume'>
+                                <Offcanvas.Title className="titulo-perfume">
                                     Perfulandia
                                 </Offcanvas.Title>
                             </Offcanvas.Header>
