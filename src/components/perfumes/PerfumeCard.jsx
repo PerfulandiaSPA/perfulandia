@@ -11,7 +11,7 @@ export default function PerfumeCard({ product, onAdd }) {
             src={imageUrl}
             alt={`Imagen de ${name}`}
             loading="lazy"
-            style={{ objectFit: 'contain', height: 180 }}
+            style={{ objectFit: 'contain', height: 180, }}
             />
         )}
         <Card.Body className="d-flex flex-column">

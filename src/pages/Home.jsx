@@ -1,14 +1,14 @@
-import { Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap'; 
+import IndividualIntervalsExample from '../components/home/Carousel'; 
 
 function Home() {
-    return (
-        <main>
-            <Container>
-                <h1>Inicio</h1>
-                <p className="text-muted">Router + Bootstrap + Context funcionando ✅</p>
-            </Container>
-        </main>
-    );
+  return (
+    <Container>
+      <h1>Bienvenido a Perfulandia</h1>
+      {/* Aquí se inserta el carrusel dentro del container */}
+      <IndividualIntervalsExample />
+    </Container>
+  );
 }
 
 export default Home;
