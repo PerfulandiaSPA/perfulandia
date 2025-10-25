@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Container } from 'react-bootstrap';
-import { useCart } from '../context/AppContext';
+import { useCart } from '../context/CartContext';
 import { PERFUMES_LIST, CATEGORIES } from '../data/perfume.mock';  // Solo una importación
 import Filters from '../components/perfumes/Filters';
 import PerfumeGrid from '../components/perfumes/PerfumeGrid';
