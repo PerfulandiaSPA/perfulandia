@@ -8,42 +8,42 @@ export const PERFUMES_LIST = [
                 name: "Chanel No. 5",
                 price: 120000,
                 category: "Mujer",
-                imageUrl: "https://www.chanel.com/t5/dynimg/perfume/chanel-no-5-eau-de-parfum.jpg"
+                imageUrl: "https://fimgs.net/mdimg/perfume/o.40069.jpg"
         },
         {
                 id: 2,
                 name: "Dior Sauvage",
                 price: 110000,
                 category: "Mujer",
-                imageUrl: "https://www.dior.com/couture/var/dior/storage/images/perfumes/dior-sauvage/diorsauvage.jpg"
+                imageUrl: "https://fimgs.net/mdimg/perfume/o.48100.jpg"
         },
         {
                 id: 3,
                 name: "Yves Saint Laurent Black Opium",
                 price: 95000,
                 category: "Mujer",
-                imageUrl: "https://www.yslbeauty.com/media/wysiwyg/black_opium.jpg"
+                imageUrl: "https://fimgs.net/mdimg/perfume-thumbs/375x500.25324.jpg"
         },
         {
                 id: 4,
                 name: "Gucci Bloom",
                 price: 105000,
                 category: "Mujer",
-                imageUrl: "https://www.gucci.com/us/en/pr/women/fragrances-for-women/gucci-bloom-eau-de-parfum-p-410453"
+                imageUrl: "https://fimgs.net/mdimg/perfume-thumbs/375x500.44894.jpg"
         },
         {
                 id: 5,
                 name: "Acqua di Gioia by Giorgio Armani",
                 price: 85000,
                 category: "Mujer",
-                imageUrl: "https://www.armani.com/images/large/02-5_1_3_GiorgioArmani_AcquaDiGioia_1.jpg"
+                imageUrl: "https://fimgs.net/mdimg/perfume-thumbs/375x500.410.jpg"
         },
         {
                 id: 6,
                 name: "Versace Bright Crystal",
                 price: 98000,
                 category: "Mujer",
-                imageUrl: "https://www.versace.com/gb/en/versace-bright-crystal-eau-de-toilette-57460982/"
+                imageUrl: "https://fimgs.net/mdimg/perfume/o.632.jpg"
         },
 
         // Categoría Hombre
@@ -53,41 +53,41 @@ export const PERFUMES_LIST = [
                 name: "Tom Ford Black Orchid",
                 price: 130000,
                 category: "Hombre",
-                imageUrl: "https://www.tomford.com/en-us/black-orchid-eau-de-parfum-100ml/"
+                imageUrl: "https://fimgs.net/mdimg/perfume/o.1018.jpg"
         },
         {
                 id: 8,
                 name: "Jean Paul Gaultier Le Male",
                 price: 88000,
                 category: "Hombre",
-                imageUrl: "https://www.jeanpaulgaultier.com/en-us/le-male/"
+                imageUrl: "https://fimgs.net/mdimg/perfume-thumbs/375x500.430.jpg"
         },
         {
                 id: 9,
                 name: "Dior Homme Intense",
                 price: 115000,
                 category: "Hombre",
-                imageUrl: "https://www.dior.com/couture/var/dior/storage/images/perfumes/dior-homme-intense/diordhommeintense.jpg"
+                imageUrl: "https://i.ebayimg.com/images/g/sacAAeSw6eVol4rP/s-l225.jpg"
         },
         {
                 id: 10,
                 name: "Hugo Boss Bottled",
                 price: 98000,
                 category: "Hombre",
-                imageUrl: "https://www.hugoboss.com/media/wysiwyg/hb/hb_bottled_hero.jpg"
+                imageUrl: "https://fimgs.net/mdimg/perfume-thumbs/375x500.75183.jpg"
         },
         {
                 id: 11,
                 name: "Acqua di Parma Colonia",
                 price: 160000,
                 category: "Hombre",
-                imageUrl: "https://www.acquadiparma.com/media/wysiwyg/colonia/acqua-di-parma-colonia.jpg"
+                imageUrl: "https://fimgs.net/mdimg/perfume/o.1681.jpg"
         },
         {
                 id: 12,
                 name: "Paco Rabanne 1 Million",
                 price: 105000,
                 category: "Hombre",
-                imageUrl: "https://www.pacorabanne.com/media/wysiwyg/1millionbottle.jpg"
+                imageUrl: "https://fimgs.net/mdimg/perfume-thumbs/375x500.60035.jpg"
         }
 ];
