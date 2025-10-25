@@ -1,6 +1,6 @@
 import { Container } from 'react-bootstrap';
 
-function Home(){
+function Home() {
     return (
         <main>
             <Container>

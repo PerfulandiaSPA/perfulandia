@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import Login from './Login';
 
 describe('Login Component', () => {
-    
+
     test('el componente Login se monta correctamente', () => {
         render(<Login />);
 
@@ -31,7 +31,7 @@ describe('Login Component', () => {
         expect(screen.queryByText(/inicio de sesión exitoso/i)).not.toBeInTheDocument();
 
     });
-    
+
     test('al ingresar datos válidos y presionar continuar, muestra inicio de sesión exitoso', async () => {
         render(<Login />);
 
