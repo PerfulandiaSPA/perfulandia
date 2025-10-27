@@ -1,10 +1,10 @@
-
 function ExampleCarouselImage({ text }) {
   return (
     <img
       className="d-block w-100"
-      src="images/carousel-example.jpg" 
+      src="/resources/images/carousel.png"  
       alt={text}
+      style={{ height: '420px', objectFit: 'cover' }} 
     />
   );
 }
