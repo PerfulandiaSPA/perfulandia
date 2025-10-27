@@ -1,5 +1,5 @@
-import { Container } from 'react-bootstrap'; 
-import IndividualIntervalsExample from '../components/home/Carousel'; 
+import { Container } from 'react-bootstrap';
+import IndividualIntervalsExample from '../components/home/Carousel';
 
 function Home() {
   return (
