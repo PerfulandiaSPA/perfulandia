@@ -1,6 +1,6 @@
 import Carousel from 'react-bootstrap/Carousel';
 import ExampleCarouselImage from './CarouselImage';
-import './Carousel.css'
+import './Carousel.css'; 
 
 export default function IndividualIntervalsExample() {
   return (
