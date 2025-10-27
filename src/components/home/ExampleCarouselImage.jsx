@@ -19,4 +19,3 @@ function ExampleCarouselImage({ text }) {
 }
 
 export default ExampleCarouselImage;
-

@@ -1,0 +1,28 @@
+/* Evita desplazamiento horizontal al usar 100vw */
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Hace que el carrusel se expanda de borde a borde */
+.full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Configura el tamaño y visualización de las imágenes */
+.full-bleed .carousel img {
+  width: 100%;
+  height: 75vh;           /* Ajusta 50–100vh según tu preferencia */
+  object-fit: cover;      /* Rellena sin deformar */
+  display: block;
+}
+
+/* Elimina fondos o márgenes adicionales del carrusel */
+.full-bleed .carousel,
+.full-bleed .carousel-item {
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
