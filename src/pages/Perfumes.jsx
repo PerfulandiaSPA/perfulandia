@@ -1,34 +1,32 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import { useCart } from '../context/CartContext';
-import { PERFUMES_LIST, CATEGORIES } from '../data/perfume.mock';  // Solo una importación
-import Filters from '../components/perfumes/Filters';
+import { PERFUMES_LIST, CATEGORIES } from '../data/perfume.mock';
 import PerfumeGrid from '../components/perfumes/PerfumeGrid';
+import { useCart } from '../context/CartContext';
 
 export default function Perfumes() {
+    const [params] = useSearchParams();
+    // Leer el parámetro "cat" de la URL
+    const cat = params.get('cat') || 'all';
     const { addToCart } = useCart();
-    const [filter, setFilter] = useState('all');
-
+    // Filtrar perfumes según el valor del parámetro
     const list = useMemo(() => {
-        return filter === 'all'
-            ? PERFUMES_LIST
-            : PERFUMES_LIST.filter(p => p.category === filter);
-    }, [filter]);
+        if (cat === 'all') return PERFUMES_LIST;
+        return PERFUMES_LIST.filter(p => p.category === cat);
+    }, [cat]);
 
     return (
         <main>
             <Container>
-                <h2 className="mb-2">Perfulandia</h2>
+                <h2 className="mb-2 titulo-perfume">Perfulandia</h2>
                 <p className="text-muted mb-3">Variedad de perfumes</p>
 
-                <Filters
-                    current={filter}
-                    onChange={setFilter}
-                    options={CATEGORIES}
-                    total={PERFUMES_LIST.length}
-                />
 
+
+                {/* Grid con los productos filtrados */}
                 <PerfumeGrid items={list} onAdd={addToCart} />
+
             </Container>
         </main>
     );

@@ -1,56 +1,79 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import { useState } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Navbar, Container, Offcanvas, Nav } from 'react-bootstrap';
+import '../Navbarvertical.css';
 
-function OffcanvasExample() {
+export default function NavBarVertical() {
+    const [show, setShow] = useState(false);
+    const [subOpen, setSubOpen] = useState(false);
+    const navigate = useNavigate();
+    const [params] = useSearchParams();
+    const cat = params.get('cat') || 'all';
+
+    const handleNavigate = (url) => {
+        navigate(url);
+        setShow(false); // cierra el panel
+    };
+
     return (
-        <>
-            {[false,].map((expand) => (
-                <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
-                    <Container fluid>
+        <Navbar expand={false} className="bg-body-tertiary mb-3">
+            <Container fluid>
+                <Navbar.Toggle onClick={() => setShow(true)} />
+                <Navbar.Offcanvas
+                    show={show}
+                    onHide={() => setShow(false)}
+                    placement="start"  // 👈 se abre desde la izquierda
+                >
+                    <Offcanvas.Header closeButton>
+                        <Offcanvas.Title className="titulo-perfume">Perfulandia</Offcanvas.Title>
+                    </Offcanvas.Header>
 
-                        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-                        <Navbar.Offcanvas
-                            id={`offcanvasNavbar-expand-${expand}`}
-                            aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                            position="end"
-                        >
-                            <Offcanvas.Header closeButton>
-                                <Offcanvas.Title className="titulo-perfume">
-                                    Perfulandia
-                                </Offcanvas.Title>
-                            </Offcanvas.Header>
-                            <Offcanvas.Body>
-                                <Nav className="justify-content-end flex-grow-1 pe-3">
-                                    <Nav.Link href="/perfumes">Perfumes</Nav.Link>
-                                    <Nav.Link href="#action2">Link</Nav.Link>
-                                    <NavDropdown
-                                        title="Dropdown"
-                                        id={`offcanvasNavbarDropdown-expand-${expand}`}
-                                    >
-                                        <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                        <NavDropdown.Item href="#action4">
-                                            Another action
-                                        </NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="#action5">
-                                            Something else here
-                                        </NavDropdown.Item>
-                                    </NavDropdown>
-                                </Nav>
+                    <Offcanvas.Body>
+                        <Nav className="flex-column gap-2">
 
 
-                            </Offcanvas.Body>
-                        </Navbar.Offcanvas>
-                    </Container>
-                </Navbar>
-            ))}
-        </>
+
+
+                            {/* --- PERFUMES con submenu --- */}
+                            <div
+                                className="submenu-container"
+                                onMouseEnter={() => setSubOpen(true)}
+                                onMouseLeave={() => setSubOpen(false)}
+                            >
+                                <Nav.Link
+                                    as={Link}
+                                    to="/perfumes?cat=all"
+                                    onClick={() => handleNavigate('/perfumes?cat=all')}
+                                    className="submenu-title"
+                                >
+                                    Perfumes
+                                </Nav.Link>
+
+                                {subOpen && (
+                                    <div className="submenu-items">
+                                        <Nav.Link
+                                            as={Link}
+                                            to="/perfumes?cat=Hombre"
+                                            active={cat === 'Hombre'}
+                                            onClick={() => handleNavigate('/perfumes?cat=Hombre')}
+                                        >
+                                            Hombre
+                                        </Nav.Link>
+                                        <Nav.Link
+                                            as={Link}
+                                            to="/perfumes?cat=Mujer"
+                                            active={cat === 'Mujer'}
+                                            onClick={() => handleNavigate('/perfumes?cat=Mujer')}
+                                        >
+                                            Mujer
+                                        </Nav.Link>
+                                    </div>
+                                )}
+                            </div>
+                        </Nav>
+                    </Offcanvas.Body>
+                </Navbar.Offcanvas>
+            </Container>
+        </Navbar>
     );
 }
-
-export default OffcanvasExample;
