@@ -1,34 +1,36 @@
 import Carousel from 'react-bootstrap/Carousel';
-import ExampleCarouselImage from './ExampleCarouselImage'; 
+import ExampleCarouselImage from './CarouselImage';
+import './Carousel.css'
 
-function IndividualIntervalsExample() {
+export default function IndividualIntervalsExample() {
   return (
-    <Carousel interval={1500}>
-      <Carousel.Item>
-        <ExampleCarouselImage text="First slide" />
-        <Carousel.Caption>
-          <h3></h3>
-        </Carousel.Caption>
-      </Carousel.Item>
+    <div className="carousel-hero">
+      <Carousel interval={4000} pause="hover" touch keyboard>
+        <Carousel.Item>
+          <ExampleCarouselImage text="First slide" />
+          <Carousel.Caption>
+            <h3></h3>
+          </Carousel.Caption>
+        </Carousel.Item>
 
-      <Carousel.Item>
-        <ExampleCarouselImage text="Second slide" />
-        <Carousel.Caption>
-          <h3></h3>
-        </Carousel.Caption>
-      </Carousel.Item>
+        <Carousel.Item>
+          <ExampleCarouselImage text="Second slide" />
+          <Carousel.Caption>
+            <h3></h3>
+          </Carousel.Caption>
+        </Carousel.Item>
 
-      <Carousel.Item>
-        <ExampleCarouselImage text="Third slide" />
-        <Carousel.Caption>
-          <h3></h3>
-        </Carousel.Caption>
-      </Carousel.Item>
-    </Carousel>
+        <Carousel.Item>
+          <ExampleCarouselImage text="Third slide" />
+          <Carousel.Caption>
+            <h3></h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+    </div>
   );
 }
 
-export default IndividualIntervalsExample;
 
 
 

@@ -1,2 +1,34 @@
 
+/* Esto hace que el carousel sea "full-bleed" (lo que significa que sea de esquina a esquina), incluso si está dentro de un cointainer */
+.carousel-hero {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* Mantiene el mismo tamaño ya sea que se haga zoom in o zoom out */
+.carousel-hero .carousel-item {
+  position: relative;
+  height: clamp(320px, 70vh, 820px);
+  overflow: hidden; /* asegura que nada se salga */
+}
+
+/* La imagen llena completamente el slide*/
+.carousel-hero .carousel-item .carousel-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Se supone que esto mejora la animación durante el zoom, ni idea, pero mejor no tocarlo.... */
+.carousel-hero .carousel {
+  overflow: hidden;
+}
+
 
