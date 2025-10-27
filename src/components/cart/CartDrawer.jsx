@@ -11,7 +11,7 @@ function CartDrawer({ isOpen, closeDrawer }) {
             <header className="cart-drawer__header">
                 <h2>Su carrito</h2>
                 <button onClick={closeDrawer} className="drawer__close-btn">
-                    <span className="visually-hidden">Cerrar</span>
+                    <span className="">X</span>
                     <svg width="24" height="24" viewBox="0 0 24 24">
                         <path d="M5 19 19 5M5 5l14 14"></path>
                     </svg>

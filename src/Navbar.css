@@ -1,3 +1,17 @@
+/* src/App.css */
+
+/* Cargar la fuente personalizada desde la carpeta 'public/resources/fonts/' */
+@font-face {
+    font-family: 'OneSignature';
+    /* Nombre de la fuente */
+    src: url('/resources/fonts/OneSignature.ttf') format('truetype');
+    /* Ruta desde la raíz pública */
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Usar la fuente personalizada en tu título */
 .titulo-perfume {
-    font-family: ;
+    font-family: 'OneSignature.ttf', cursive;
+    /* Aplica la fuente al título */
 }
