@@ -3,7 +3,7 @@ function ExampleCarouselImage({ text }) {
   return (
     <img
       className="d-block w-100"
-      src="ruta/a/tu/imagen.jpg" 
+      src="images/carousel-example.jpg" 
       alt={text}
     />
   );
