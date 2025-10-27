@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from './Login';
 
-describe('Login Component', () => {
+describe('Componente Login', () => {
 
     test('el componente Login se monta correctamente', () => {
         render(<Login />);

@@ -6,9 +6,19 @@ export const PERFUMES_LIST = [
         {
                 id: 1,
                 name: "Chanel No. 5",
+                brand: "Chanel",
                 price: 120000,
                 category: "Mujer",
-                imageUrl: "https://fimgs.net/mdimg/perfume/o.40069.jpg"
+                imageUrl: "https://fimgs.net/mdimg/perfume/o.40069.jpg",
+                description: "Clásico atemporal con acorde floral aldehído.", // esto no se muestra
+                specs: {
+                        "Concentración": "Eau de Parfum",
+                        "Volumen": "100 ml",
+                        "Notas de salida": "Aldehídos, ylang-ylang, neroli",
+                        "Notas de corazón": "Jazmín, rosa",
+                        "Notas de fondo": "Vainilla, sándalo, vetiver",
+                        "Año": "1921"
+                }
         },
         {
                 id: 2,
