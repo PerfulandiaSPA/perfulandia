@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Navbar, Container, Offcanvas, Nav } from 'react-bootstrap';
 import '../Navbarvertical.css';
+import '../Navbar.css';
 
 export default function NavBarVertical() {
     const [show, setShow] = useState(false);
@@ -26,6 +27,7 @@ export default function NavBarVertical() {
                 >
                     <Offcanvas.Header closeButton>
                         <Offcanvas.Title className="titulo-perfume">Perfulandia</Offcanvas.Title>
+
                     </Offcanvas.Header>
 
                     <Offcanvas.Body>
