@@ -44,6 +44,7 @@ function CartDrawer({ isOpen, closeDrawer }) {
             {/* Subtotal */}
             <div className="cart-drawer__subtotal">
                 <p>Subtotal: {cart.reduce((total, product) => total + product.price, 0)} CLP</p>
+                <button className="checkout-btn">Ir a pagar</button>
             </div>
         </div>
     );
