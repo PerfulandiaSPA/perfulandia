@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { PERFUMES_LIST } from '../data/perfume.mock';
 import Perfumes from './Perfumes';
 
 jest.mock('../context/CartContext', () => ({
@@ -7,6 +8,14 @@ jest.mock('../context/CartContext', () => ({
         addToCart: jest.fn()
     }),
 }));
+
+jest.mock('../components/perfumes/PerfumeGrid', () => {
+    const React = require('react');
+    return {
+        __esModule: true,
+        default: ({ items = [] }) => React.createElement('div', { 'data-testid': 'perfume-grid', 'data-count': String(items.length) }),
+    };
+});
 
 describe('Componente Perfumes', () => {
 
@@ -19,31 +28,48 @@ describe('Componente Perfumes', () => {
         expect(screen.getByText(/perfulandia/i)).toBeInTheDocument();
     });
 
-    test('renderiza todas las tarjetas de perfume', () => {
+    test('muestra el subtítulo "Variedad de perfumes"', () => {
         render(
             <MemoryRouter>
                 <Perfumes />
             </MemoryRouter>
         );
-        expect(screen.getByText(/perfulandia/i)).toBeInTheDocument();
+        expect(screen.getByText(/variedad de perfumes/i)).toBeInTheDocument();
     });
 
-    test('el botón "Agregar" aparece en cada tarjeta', () => {
+    test('por defecto (sin parámetro) renderiza el grid con todos los perfumes', () => {
         render(
-            <MemoryRouter>
+            <MemoryRouter initialEntries={['/']}>
                 <Perfumes />
             </MemoryRouter>
         );
-        expect(screen.getByText(/perfulandia/i)).toBeInTheDocument();
+        const grid = screen.getByTestId('perfume-grid');
+        expect(grid).toBeInTheDocument();
+        expect(grid.dataset.count).toBe(String(PERFUMES_LIST.length));
     });
 
-    test('renderiza perfumes y permite agregar', async () => {
+    test('filtra perfumes según el parámetro "cat"', () => {
+        const category = PERFUMES_LIST[0].category;
+        const expectedCount = PERFUMES_LIST.filter(p => p.category === category).length;
+
         render(
-            <MemoryRouter>
+            <MemoryRouter initialEntries={[`/?cat=${encodeURIComponent(category)}`]}>
                 <Perfumes />
             </MemoryRouter>
         );
-        expect(screen.getByText(/perfulandia/i)).toBeInTheDocument();
+
+        const grid = screen.getByTestId('perfume-grid');
+        expect(grid.dataset.count).toBe(String(expectedCount));
+    });
+
+    test('parámetro "cat" desconocido produce lista vacía', () => {
+        render(
+            <MemoryRouter initialEntries={['/?cat=nonexistent-category']}>
+                <Perfumes />
+            </MemoryRouter>
+        );
+        const grid = screen.getByTestId('perfume-grid');
+        expect(grid.dataset.count).toBe('0');
     });
 
 });
