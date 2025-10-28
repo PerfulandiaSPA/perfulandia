@@ -23,7 +23,7 @@ export default function NavBarVertical() {
                 <Navbar.Offcanvas
                     show={show}
                     onHide={() => setShow(false)}
-                    placement="start"  // 👈 se abre desde la izquierda
+                    placement="start"
                 >
                     <Offcanvas.Header closeButton>
                         <Offcanvas.Title className="titulo-perfume">Perfulandia</Offcanvas.Title>
