@@ -1,43 +1,27 @@
-/* Estilos del submenú lateral */
-.submenu-container {
-    position: relative;
+/* Contenedor general del botón */
+.menu-toggle {
+  background: none;           /* sin fondo */
+  border: none;               /* sin borde */
+  padding: 0;                 /* sin espacio interno */
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.submenu-title {
-    cursor: pointer;
-    font-weight: 500;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* SVG del ícono (las 3 líneas) */
+.menu-toggle svg {
+  width: 38px;     /* tamaño más grande (puedes subir a 42px si quieres) */
+  height: 38px;
+  stroke: #000;    /* color negro */
+  stroke-width: 2; /* grosor de las líneas */
+  transition: transform 0.2s ease;
 }
 
-.submenu-items {
-    display: flex;
-    flex-direction: column;
-    margin-left: 15px;
-    animation: slideDown 0.3s ease;
-}
-
-.submenu-items a {
-    font-size: 0.95rem;
-    padding-left: 8px;
-    transition: all 0.2s ease;
-}
-
-.submenu-items a:hover {
-    color: #0d6efd;
-    font-weight: 500;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* efecto visual suave al pasar el mouse */
+.menu-toggle:hover svg {
+  transform: scale(1.1); /* agranda un poco al pasar el cursor */
+  opacity: 0.8;
 }
 
