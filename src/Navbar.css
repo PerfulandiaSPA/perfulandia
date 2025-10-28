@@ -11,7 +11,8 @@
   margin-left: auto !important;
   display: flex;
   align-items: center;
-  gap: 1rem;            /* espacio entre "Login" y el carrito */
+  gap: 1rem;
+  /* espacio entre "Login" y el carrito */
 }
 
 /* 3) Tamaño del logo */
@@ -23,18 +24,37 @@
 /* 4) (opcional) look limpio del navbar */
 .navbar.bg-body-tertiary {
   background-color: #fff !important;
-  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
   padding: .6rem 0;
 }
 
 /* --- Tu carrito tal cual --- */
-.cart-btn-container { position: relative; }
-.cart-btn { background: none; border: none; display: flex; align-items: center; cursor: pointer; }
-.cart-icon { width: 22px; height: 22px; }
+.cart-btn-container {
+  position: relative;
+}
+
+.cart-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cart-icon {
+  width: 22px;
+  height: 22px;
+}
+
 .cart-count {
-  position: absolute; top: -5px; right: -8px;
-  background: #000; color: #fff; border-radius: 50%;
-  padding: 1px 5px; font-size: 12px;
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  padding: 1px 5px;
+  font-size: 12px;
 }
 
 /* Elimina padding lateral del container del navbar */
@@ -46,7 +66,8 @@
 
 /* Logo bien a la izquierda */
 .navbar-brand {
-  margin-left: 3rem;  /* ajusta el valor según cuánto quieras */
+  margin-left: 3rem;
+  /* ajusta el valor según cuánto quieras */
 }
 
 /* Login + carrito bien a la derecha */
@@ -58,18 +79,22 @@
 .navbar .navbar-collapse .navbar-nav.me-auto {
   display: flex;
   align-items: center;
-  gap: 3rem; /* <-- aumenta o reduce este valor según lo que quieras */
+  gap: 3rem;
+  /* <-- aumenta o reduce este valor según lo que quieras */
 }
 
 /* --- Aumenta tamaño de "Login" --- */
 .navbar .nav-link {
-  font-size: 1.15rem;    /* texto más grande */
-  font-weight: 600;      /* más grueso */
+  font-size: 1.15rem;
+  /* texto más grande */
+  font-weight: 600;
+  /* más grueso */
 }
 
 /* --- Aumenta tamaño del ícono del carrito --- */
 .cart-btn svg {
-  width: 28px;   /* antes 22-24px */
+  width: 28px;
+  /* antes 22-24px */
   height: 28px;
 }
 
