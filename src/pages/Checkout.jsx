@@ -9,7 +9,7 @@ export default function CheckoutPage() {
     const onSubmit = (e) => {
         e.preventDefault();
         // aqui integraremos el api de pagos
-        alert('Pago simulado con éxito 🎉');
+        alert('Pago simulado con éxito ');
         clearCart();
     };
 
