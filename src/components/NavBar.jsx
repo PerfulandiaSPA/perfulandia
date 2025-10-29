@@ -10,7 +10,7 @@ import '../Navbar.css';
 
 function NavBar() {
   const { cart } = useCart();
-  const cartItemCount = cart.length;
+  const cartItemCount = cart.reduce((total, product) => total + product.qty, 0); // Actualizamos el contador para que sume las cantidades
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleCartDrawer = () => setIsOpen(!isOpen);
@@ -19,7 +19,7 @@ function NavBar() {
     <>
       <Navbar expand="lg" className="bg-body-tertiary main-navbar">
         <Container fluid className="d-flex align-items-center justify-content-between">
-          
+
           {/* 🔹 IZQUIERDA: Hamburguesa + Logo */}
           <div className="d-flex align-items-center gap-3">
             <NavbarVertically /> {/* botón hamburguesa */}

@@ -6,7 +6,7 @@ import { CartProvider } from './context/CartContext';
 function App() {
   return (
     <div className='App'>
-      {/* AppProvider Engloba todas las pantallas lo que quiere decir que es una funcion Global */}
+      {/* CartProvider Engloba todas las pantallas lo que quiere decir que es una funcion Global */}
       <CartProvider>
 
 

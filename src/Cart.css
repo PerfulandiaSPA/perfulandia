@@ -8,9 +8,12 @@
   height: 100vh;
   background: #fff;
   box-shadow: -8px 0 24px rgba(0, 0, 0, 0.25);
-  transform: translateX(100%); /* Estado cerrado */
-  transition: transform 0.4s ease; /* Animación de apertura */
-  z-index: 2000; /* > que cualquier cosa del carrusel */
+  transform: translateX(100%);
+  /* Estado cerrado */
+  transition: transform 0.4s ease;
+  /* Animación de apertura */
+  z-index: 2000;
+  /* > que cualquier cosa del carrusel */
   display: flex;
   flex-direction: column;
 }
@@ -75,4 +78,110 @@
 
 .checkout-btn:hover {
   background-color: #444;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .5rem 0;
+}
+
+.cart-item__info {
+  flex: 1;
+}
+
+.cart-item__name {
+  margin: 0;
+  font-weight: 600;
+}
+
+.cart-item__price {
+  margin: .25rem 0 .5rem;
+  color: #555;
+}
+
+.cart-item__qty {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.counter {
+  width: 64px;
+  height: 32px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.cart-item__remove {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .5rem 0;
+}
+
+.cart-item__info {
+  flex: 1;
+}
+
+.cart-item__name {
+  margin: 0;
+  font-weight: 600;
+}
+
+.cart-item__price {
+  margin: .25rem 0 .5rem;
+  color: #555;
+}
+
+.cart-item__qty {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.counter {
+  width: 64px;
+  height: 32px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.cart-item__remove {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
 }

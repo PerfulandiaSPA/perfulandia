@@ -1,21 +1,25 @@
-// src/context/CartContext.js
 import { createContext, useContext, useState, useMemo } from 'react';
 
 const CartContext = createContext();
 
-
 export function CartProvider({ children }) {
-    const [cart, setCart] = useState([]); // [{id, name, price, imageUrl, qty}]
-
-    const addToCart = (product) => {
+    const [cart, setCart] = useState([]);
+    /*
+    * 
+    * Documentacion ADD TO CART
+    *
+    */
+    function addToCart(product) {
         setCart(prev => {
+            const inc = Number(product.qty ?? 1);
             const i = prev.findIndex(p => p.id === product.id);
-            if (i === -1) return [...prev, { ...product, qty: 1 }];
+            if (i === -1) return [...prev, { ...product, qty: inc }];
             const copy = [...prev];
-            copy[i] = { ...copy[i], qty: copy[i].qty + 1 };
+            copy[i] = { ...copy[i], qty: copy[i].qty + inc };
             return copy;
         });
-    };
+    }
+
 
     const removeFromCart = (id) => setCart(prev => prev.filter(p => p.id !== id));
 
@@ -27,8 +31,8 @@ export function CartProvider({ children }) {
 
     const totals = useMemo(() => {
         const subtotal = cart.reduce((acc, p) => acc + p.price * p.qty, 0);
-        const shipping = subtotal > 0 ? 2990 : 0;     // ejemplo
-        const tax = Math.round(subtotal * 0.19);      // IVA 19% (ejemplo)
+        const shipping = subtotal > 0 ? 2990 : 0;
+        const tax = Math.round(subtotal * 0.19);  // IVA 19%
         const total = subtotal + shipping + tax;
         const items = cart.reduce((acc, p) => acc + p.qty, 0);
         return { items, subtotal, shipping, tax, total };
