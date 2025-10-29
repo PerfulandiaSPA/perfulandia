@@ -19,8 +19,9 @@ export default function Perfumes() {
     return (
         <main>
             <Container>
-                <h2 className="mb-2 titulo-perfume">Perfulandia</h2>
-                <p className="text-muted mb-3">Variedad de perfumes</p>
+                <br />
+                <h2 className="mb-2 titulo-perfume">PRODUCTOS</h2>
+                <p className="text-muted mb-3"> </p>
 
 
 

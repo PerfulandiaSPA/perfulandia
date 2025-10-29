@@ -25,16 +25,7 @@ describe('Componente Perfumes', () => {
                 <Perfumes />
             </MemoryRouter>
         );
-        expect(screen.getByText(/perfulandia/i)).toBeInTheDocument();
-    });
-
-    test('muestra el subtítulo "Variedad de perfumes"', () => {
-        render(
-            <MemoryRouter>
-                <Perfumes />
-            </MemoryRouter>
-        );
-        expect(screen.getByText(/variedad de perfumes/i)).toBeInTheDocument();
+        expect(screen.getByText(/productos/i)).toBeInTheDocument();
     });
 
     test('por defecto (sin parámetro) renderiza el grid con todos los perfumes', () => {
