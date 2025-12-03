@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -10,6 +11,7 @@ import '../Navbar.css';
 
 function NavBar() {
   const { cart } = useCart();
+  const { isAuthenticated } = useAuth();
   const cartItemCount = cart.reduce((total, product) => total + product.qty, 0); // Actualizamos el contador para que sume las cantidades
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,9 +36,15 @@ function NavBar() {
 
           {/* 🔹 DERECHA: Login + Carrito */}
           <div className="d-flex align-items-center gap-4 me-4">
-            <Nav.Link as={Link} to="/login" className="fs-5 fw-semibold">
-              Login
-            </Nav.Link>
+            {isAuthenticated ? (
+              <Nav.Link as={Link} to="/profile" className="fs-5 fw-semibold">
+                Profile
+              </Nav.Link>
+            ) : (
+              <Nav.Link as={Link} to="/login" className="fs-5 fw-semibold">
+                Login
+              </Nav.Link>
+            )}
 
             <div className="cart-btn-container position-relative">
               <button className="cart-btn" onClick={toggleCartDrawer}>

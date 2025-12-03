@@ -6,6 +6,8 @@ import Perfumes from '../pages/Perfumes';
 import PerfumeDetail from '../pages/PerfumeDetail';
 import Cart from '../pages/Cart';
 import CheckoutPage from '../pages/Checkout';
+import ProfileScreen from '../pages/Profile';
+import PrivateRoute from './PrivateRoute';
 
 
 const AppRoutes = () => (
@@ -16,6 +18,7 @@ const AppRoutes = () => (
     <Route path="/perfumes/:id" element={<PerfumeDetail />} />
     <Route path="/cart" element={<Cart />} />
     <Route path="/checkout" element={<CheckoutPage />} />
+    <Route path="/profile" element={<PrivateRoute><ProfileScreen /></PrivateRoute>} />
     <Route path="*" element={<h2>404 - Página no encontrada</h2>} />
   </Routes>
 );
