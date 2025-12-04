@@ -8,6 +8,7 @@ import { useState } from 'react';
 import CartDrawer from './cart/CartDrawer';
 import NavbarVertically from './NavbarVertically'; // 👈 nombre corregido
 import '../Navbar.css';
+import { Button } from 'react-bootstrap';
 
 function NavBar() {
   const { cart } = useCart();
@@ -43,6 +44,12 @@ function NavBar() {
             ) : (
               <Nav.Link as={Link} to="/login" className="fs-5 fw-semibold">
                 Login
+              </Nav.Link>
+            )}
+
+            {user && user.role === 'ROLE_ADMIN' && (
+              <Nav.Link as={Link} to="/admin/perfumes" className="fs-5 fw-semibold">
+                Admin
               </Nav.Link>
             )}
 
