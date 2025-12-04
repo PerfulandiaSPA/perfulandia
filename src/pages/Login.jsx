@@ -1,22 +1,47 @@
 import { useState } from 'react';
 import { Container, Form, Button, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 function Login() {
     const [msg, setMsg] = useState('');
     const [errors, setErrors] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const { login, isAdmin } = useAuth();
+    const navigate = useNavigate();
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
-        const email = (data.get('email') || '').trim();
+        const username = (data.get('username') || '').trim();
         const password = (data.get('password') || '').trim();
 
         const errs = [];
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.push('El correo es obligatorio y debe ser válido');
+        if (!username) errs.push('El usuario es obligatorio');
         if (!password) errs.push('La contraseña es obligatoria');
 
-        setErrors(errs);
-        setMsg(errs.length === 0 ? '¡Inicio de sesión exitoso!' : '');
+        if (errs.length > 0) {
+            setErrors(errs);
+            setMsg('');
+            return;
+        }
+
+        try {
+            setLoading(true);
+            setErrors([]);
+            await login(username, password);
+            setMsg('¡Inicio de sesión exitoso!');
+            
+            // Redirigir después de un pequeño delay para que se actualice el estado
+            setTimeout(() => {
+                navigate('/');
+            }, 500);
+        } catch (error) {
+            setErrors([error.message || 'Error al iniciar sesión. Verifica tu usuario y contraseña']);
+            setMsg('');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -27,9 +52,9 @@ function Login() {
                 {errors.length > 0 && <Alert variant="danger">{errors.join('. ')}</Alert>}
 
                 <Form onSubmit={onSubmit} noValidate>
-                    <Form.Group className="mb-3" controlId="email">
-                        <Form.Label>EMAIL:</Form.Label>
-                        <Form.Control type="email" name="email" required />
+                    <Form.Group className="mb-3" controlId="username">
+                        <Form.Label>USUARIO:</Form.Label>
+                        <Form.Control type="text" name="username" required />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="password">
@@ -37,7 +62,9 @@ function Login() {
                         <Form.Control type="password" name="password" required />
                     </Form.Group>
 
-                    <Button type="submit">CONTINUAR</Button>
+                    <Button type="submit" disabled={loading}>
+                        {loading ? 'Iniciando sesión...' : 'CONTINUAR'}
+                    </Button>
                 </Form>
             </Container>
         </main>

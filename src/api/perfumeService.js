@@ -16,7 +16,7 @@ export async function createPerfume(perfume) {
 }
 
 export async function deletePerfume(id) {
-    const response = await api.delete(`api/v1/perfumes${id}`);
+    const response = await api.delete(`api/v1/perfumes/${id}`);
     return response;
 }
 

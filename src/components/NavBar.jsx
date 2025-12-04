@@ -12,7 +12,7 @@ import { Button } from 'react-bootstrap';
 
 function NavBar() {
   const { cart } = useCart();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isAdmin } = useAuth();
   const cartItemCount = cart.reduce((total, product) => total + product.qty, 0); // Actualizamos el contador para que sume las cantidades
   const [isOpen, setIsOpen] = useState(false);
 
@@ -47,10 +47,15 @@ function NavBar() {
               </Nav.Link>
             )}
 
-            {user && user.role === 'ROLE_ADMIN' && (
-              <Nav.Link as={Link} to="/admin/perfumes" className="fs-5 fw-semibold">
+            {isAdmin && (
+              <Button 
+                as={Link} 
+                to="/admin/perfumes" 
+                variant="warning" 
+                className="fw-semibold"
+              >
                 Admin
-              </Nav.Link>
+              </Button>
             )}
 
             <div className="cart-btn-container position-relative">
