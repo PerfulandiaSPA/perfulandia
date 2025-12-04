@@ -37,10 +37,10 @@ export default function Cart() {
                                 <tr key={p.id}>
                                     <td>
                                         <div className="d-flex align-items-center gap-3">
-                                            {p.imageUrl && <img src={p.imageUrl} alt={p.name} width="60" height="60" style={{ objectFit: 'cover' }} />}
+                                            {p.image && <img src={p.image} alt={p.productName} width="60" height="60" style={{ objectFit: 'cover' }} />}
                                             <div>
-                                                <div className="fw-semibold">{p.name}</div>
-                                                <small className="text-muted">{p.category}</small>
+                                                <div className="fw-semibold">{p.productName}</div>
+                                                <small className="text-muted">{p.brand}</small>
                                             </div>
                                         </div>
                                     </td>

@@ -1,55 +1,57 @@
-// PerfumeGrid.jsx o HomePage.jsx
+import React from 'react';
+import { Card, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import './../../Cart.css';
 
-import React, { useState, useEffect } from 'react';
-import PerfumeCard from './PerfumeCard';
-import { getAllPerfumes } from '../../api/perfumeService';
-import { Row, Col, Spinner, Alert } from 'react-bootstrap';
+export default function PerfumeCard({ product, onAdd }) {
+    const navigate = useNavigate();
 
-export default function PerfumeGrid() {
-    const [perfumes, setPerfumes] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    if (!product) return null;
 
-    useEffect(() => {
-        async function fetchPerfumes() {
-            try {
-                // 1. Llamar al servicio que usa Axios
-                const data = await getAllPerfumes();
-
-                // 2. Asumiendo que 'data' es el array de perfumes.
-                setPerfumes(data);
-
-            } catch (err) {
-                console.error("Error al obtener perfumes:", err);
-                setError("No se pudieron cargar los productos. " + err.message);
-
-            } finally {
-                setLoading(false);
-            }
-        }
-        fetchPerfumes();
-    }, []);
-
-    if (loading) return <div className="text-center mt-5"><Spinner animation="border" /></div>;
-    if (error) return <Alert variant="danger" className="mt-5">{error}</Alert>;
-
-    const handleAdd = (product) => {
-        // Lógica para añadir al carrito (Contexto o Redux)
-        console.log("Añadir al carrito:", product.name);
+    const handleCardClick = () => {
+        navigate(`/perfumes/${product.idPerfume || product.id}`);
     };
 
     return (
-        <Row xs={1} md={2} lg={4} className="g-4 mt-3">
-            {perfumes.map(perfume => (
-                <Col key={perfume.id}>
-                    {/* 3. Pasar el objeto completo al Card */}
-                    <PerfumeCard
-                        product={perfume}
-                        // Enlazar handleAdd para que la tarjeta lo llame al hacer click
-                        onAdd={() => handleAdd(perfume)}
-                    />
-                </Col>
-            ))}
-        </Row>
+        <Card 
+            className="h-100 perfume-card"
+            onClick={handleCardClick}
+            style={{ cursor: 'pointer' }}
+        >
+            <Card.Img 
+                variant="top" 
+                src={product.image || product.imageUrl || 'https://via.placeholder.com/200'} 
+                alt={product.productName || product.name}
+                style={{ height: '200px', objectFit: 'cover' }}
+            />
+            <Card.Body>
+                <Card.Title>{product.productName || product.name}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                    {product.brand || 'Sin marca'}
+                </Card.Subtitle>
+                <p className="text-sm">
+                    {product.descPerfume || product.description || 'Sin descripción'}
+                </p>
+                <p className="text-muted small">
+                    <strong>Tamaño:</strong> {product.size || product.volume || 'N/A'}
+                </p>
+                <div className="d-flex justify-content-between align-items-center">
+                    <Card.Text className="mb-0">
+                        <strong>${Number(product.price).toLocaleString('es-CL')}</strong>
+                    </Card.Text>
+                    <Button 
+                        variant="primary" 
+                        size="sm" 
+                        onClick={(e) => {
+                            e.stopPropagation(); // Evita que se navegue al detalle
+                            onAdd();
+                        }}
+                        disabled={!product.stock || product.stock === 0}
+                    >
+                        {product.stock && product.stock > 0 ? 'Agregar' : 'Sin stock'}
+                    </Button>
+                </div>
+            </Card.Body>
+        </Card>
     );
 }

@@ -9,16 +9,16 @@ import {
 } from '../api/perfumeService';
 
 const initialForm = {
-    name: '',
-    category: '',
+    productName: '',
+    brand: '',
     price: '',
-    imageUrl: '',
-    description: '',
-    volume: '',
-    concentration: '',
-    topNotes: '',
-    middleNotes: '',
-    baseNotes: ''
+    stock: '',
+    image: '',
+    size: '',
+    descPerfume: '',
+    isActive: true,
+    categoryGender: '',
+    categoryFragancy: ''
 };
 
 export default function PerfumeForm() {
@@ -59,18 +59,14 @@ export default function PerfumeForm() {
             setError('');
 
             const payload = {
-                name: form.name.trim(),
-                category: form.category.trim() || null,
+                productName: form.productName.trim(),
+                brand: form.brand.trim(),
                 price: form.price ? Number(form.price) : 0,
-                imageUrl: form.imageUrl.trim() || null,
-                description: form.description.trim() || null,
-                specs: {
-                    "Volumen": form.volume.trim() || null,
-                    "Concentración": form.concentration.trim() || null,
-                    "Notas de salida": form.topNotes.trim() || null,
-                    "Notas de corazón": form.middleNotes.trim() || null,
-                    "Notas de fondo": form.baseNotes.trim() || null
-                }
+                stock: form.stock ? Number(form.stock) : 0,
+                image: form.image.trim(),
+                size: form.size.trim(),
+                descPerfume: form.descPerfume.trim(),
+                isActive: form.isActive
             };
 
             const nuevo = await createPerfume(payload);
@@ -115,37 +111,27 @@ export default function PerfumeForm() {
                     <h4>Nuevo perfume</h4>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-2">
-                            <Form.Label>Nombre</Form.Label>
+                            <Form.Label>Nombre del Producto *</Form.Label>
                             <Form.Control
-                                name="name"
-                                value={form.name}
+                                name="productName"
+                                value={form.productName}
                                 onChange={handleChange}
                                 required
                             />
                         </Form.Group>
 
                         <Form.Group className="mb-2">
-                            <Form.Label>Categoría</Form.Label>
+                            <Form.Label>Marca *</Form.Label>
                             <Form.Control
-                                name="category"
-                                value={form.category}
+                                name="brand"
+                                value={form.brand}
                                 onChange={handleChange}
-                                placeholder="ej: Mujer, Hombre, Unisex"
+                                required
                             />
                         </Form.Group>
 
                         <Form.Group className="mb-2">
-                            <Form.Label>URL de Imagen</Form.Label>
-                            <Form.Control
-                                name="imageUrl"
-                                value={form.imageUrl}
-                                onChange={handleChange}
-                                placeholder="ej: https://fimgs.net/mdimg/perfume/o.40069.jpg"
-                            />
-                        </Form.Group>
-
-                        <Form.Group className="mb-2">
-                            <Form.Label>Precio</Form.Label>
+                            <Form.Label>Precio *</Form.Label>
                             <Form.Control
                                 type="number"
                                 step="0.01"
@@ -153,74 +139,64 @@ export default function PerfumeForm() {
                                 value={form.price}
                                 onChange={handleChange}
                                 min="0"
+                                required
                             />
                         </Form.Group>
 
                         <Form.Group className="mb-2">
-                            <Form.Label>Volumen (ml)</Form.Label>
+                            <Form.Label>Stock *</Form.Label>
                             <Form.Control
-                                name="volume"
-                                value={form.volume}
+                                type="number"
+                                name="stock"
+                                value={form.stock}
+                                onChange={handleChange}
+                                min="0"
+                                required
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-2">
+                            <Form.Label>URL de Imagen *</Form.Label>
+                            <Form.Control
+                                name="image"
+                                value={form.image}
+                                onChange={handleChange}
+                                placeholder="ej: https://fimgs.net/mdimg/perfume/o.40069.jpg"
+                                required
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-2">
+                            <Form.Label>Tamaño *</Form.Label>
+                            <Form.Control
+                                name="size"
+                                value={form.size}
                                 onChange={handleChange}
                                 placeholder="ej: 100 ml"
-                            />
-                        </Form.Group>
-
-                        <Form.Group className="mb-2">
-                            <Form.Label>Concentración</Form.Label>
-                            <Form.Control
-                                name="concentration"
-                                value={form.concentration}
-                                onChange={handleChange}
-                                placeholder="ej: Eau de Parfum"
-                            />
-                        </Form.Group>
-
-                        <Form.Group className="mb-2">
-                            <Form.Label>Notas de Salida</Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                rows={2}
-                                name="topNotes"
-                                value={form.topNotes}
-                                onChange={handleChange}
-                                placeholder="ej: Bergamota, limón, pimienta"
-                            />
-                        </Form.Group>
-
-                        <Form.Group className="mb-2">
-                            <Form.Label>Notas de Corazón</Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                rows={2}
-                                name="middleNotes"
-                                value={form.middleNotes}
-                                onChange={handleChange}
-                                placeholder="ej: Jazmín, rosa, iris"
-                            />
-                        </Form.Group>
-
-                        <Form.Group className="mb-2">
-                            <Form.Label>Notas de Fondo</Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                rows={2}
-                                name="baseNotes"
-                                value={form.baseNotes}
-                                onChange={handleChange}
-                                placeholder="ej: Vainilla, sándalo, almízcares"
+                                required
                             />
                         </Form.Group>
 
                         <Form.Group className="mb-3">
-                            <Form.Label>Descripción</Form.Label>
+                            <Form.Label>Descripción *</Form.Label>
                             <Form.Control
                                 as="textarea"
                                 rows={3}
-                                name="description"
-                                value={form.description}
+                                name="descPerfume"
+                                value={form.descPerfume}
                                 onChange={handleChange}
                                 placeholder="Descripción del perfume"
+                                required
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Check 
+                                type="checkbox"
+                                name="isActive"
+                                label="Activo"
+                                checked={form.isActive}
+                                onChange={(e) => setForm(prev => ({ ...prev, isActive: e.target.checked }))}
                             />
                         </Form.Group>
 
@@ -244,22 +220,24 @@ export default function PerfumeForm() {
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
-                            <th>Categoría</th>
+                            <th>Marca</th>
                             <th>Precio</th>
-                            <th>Volumen</th>
-                            <th>Concentración</th>
+                            <th>Stock</th>
+                            <th>Tamaño</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {perfumes.map((perfume) => (
-                            <tr key={perfume.id}>
-                                <td>{perfume.id}</td>
-                                <td>{perfume.name}</td>
-                                <td>{perfume.category}</td>
+                            <tr key={perfume.idPerfume}>
+                                <td>{perfume.idPerfume}</td>
+                                <td>{perfume.productName}</td>
+                                <td>{perfume.brand}</td>
                                 <td>${Number(perfume.price).toLocaleString('es-CL')}</td>
-                                <td>{perfume.specs?.["Volumen"] || perfume.volume}</td>
-                                <td>{perfume.specs?.["Concentración"] || perfume.concentration}</td>
+                                <td>{perfume.stock}</td>
+                                <td>{perfume.size}</td>
+                                <td>{perfume.isActive ? 'Activo' : 'Inactivo'}</td>
                                 <td>
                                     <Button
                                         variant="success"
@@ -272,7 +250,7 @@ export default function PerfumeForm() {
                                     <Button
                                         variant="danger"
                                         size="sm"
-                                        onClick={() => handleDelete(perfume.id)}
+                                        onClick={() => handleDelete(perfume.idPerfume)}
                                     >
                                         Borrar
                                     </Button>

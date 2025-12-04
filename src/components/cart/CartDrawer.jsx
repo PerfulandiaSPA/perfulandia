@@ -30,9 +30,9 @@ function CartDrawer({ isOpen, closeDrawer }) {
           <div>
             {cart.map((product) => (
               <div key={product.id} className="cart-item">
-                <img src={product.imageUrl} alt={product.name} width="50" />
+                <img src={product.image} alt={product.productName} width="50" />
                 <div className="cart-item__info">
-                  <p className="cart-item__name">{product.name}</p>
+                  <p className="cart-item__name">{product.productName}</p>
                   <p className="cart-item__price">{product.price} CLP</p>
 
                   {/* Contador de cantidad */}

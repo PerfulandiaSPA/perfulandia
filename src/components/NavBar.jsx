@@ -43,7 +43,7 @@ function NavBar() {
               </Nav.Link>
             ) : (
               <Nav.Link as={Link} to="/login" className="fs-5 fw-semibold">
-                Login
+                INICIAR SESIÓN
               </Nav.Link>
             )}
 
