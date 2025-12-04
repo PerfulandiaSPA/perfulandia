@@ -102,7 +102,7 @@ export const PERFUMES_LIST = [
                         "Año": "2006"
                 }
         },
-        
+
         // --- HOMBRE ---
         {
                 id: 7,

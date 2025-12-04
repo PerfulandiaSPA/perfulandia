@@ -11,16 +11,16 @@ export async function getOrderById(id) {
 }
 
 export async function createOrder(perfume) {
-    const response = await api.get(`/order`, order);
+    const response = await api.post(`/order`, order);
     return response;
 }
 
 export async function deleteOrder(id) {
-    const response = await api.get(`/order/${id}`);
+    const response = await api.delete(`/order/${id}`);
     return response;
 }
 
-export async function updateOrder(id, libro) {
-    const response = await api.get(`/order/${id}`, order);
+export async function updateOrder(id, perfume) {
+    const response = await api.put(`/order/${id}`, order);
     return response;
 }
