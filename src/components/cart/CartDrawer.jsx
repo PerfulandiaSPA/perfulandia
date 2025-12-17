@@ -3,10 +3,8 @@ import '../../Cart.css';
 import { useNavigate } from 'react-router-dom';
 
 function CartDrawer({ isOpen, closeDrawer }) {
-  const { cart, removeFromCart, updateQty } = useCart(); // 👈 sumé updateQty
+  const { cart, removeFromCart, updateQty, totals } = useCart(); // 👈 sumé updateQty y totals
   const navigate = useNavigate();
-
-  const subtotal = cart.reduce((acc, p) => acc + p.price * p.qty, 0);
 
   return (
     <div className={`cart-drawer ${isOpen ? 'open' : ''}`} aria-hidden={!isOpen}>
@@ -29,7 +27,7 @@ function CartDrawer({ isOpen, closeDrawer }) {
         ) : (
           <div>
             {cart.map((product) => (
-              <div key={product.id} className="cart-item">
+              <div key={product.idPerfume} className="cart-item">
                 <img src={product.image} alt={product.productName} width="50" />
                 <div className="cart-item__info">
                   <p className="cart-item__name">{product.productName}</p>
@@ -40,7 +38,7 @@ function CartDrawer({ isOpen, closeDrawer }) {
                     <button
                       type="button"
                       className="qty-btn"
-                      onClick={() => updateQty(product.id, product.qty - 1)}
+                      onClick={() => updateQty(product.idPerfume, product.qty - 1)}
                     >
                       −
                     </button>
@@ -50,20 +48,20 @@ function CartDrawer({ isOpen, closeDrawer }) {
                       type="number"
                       min="1"
                       value={product.qty}
-                      onChange={(e) => updateQty(product.id, e.target.value)}
+                      onChange={(e) => updateQty(product.idPerfume, e.target.value)}
                     />
 
                     <button
                       type="button"
                       className="qty-btn"
-                      onClick={() => updateQty(product.id, product.qty + 1)}
+                      onClick={() => updateQty(product.idPerfume, product.qty + 1)}
                     >
                       +
                     </button>
                   </div>
                 </div>
 
-                <button className="cart-item__remove" onClick={() => removeFromCart(product.id)}>
+                <button className="cart-item__remove" onClick={() => removeFromCart(product.idPerfume)}>
                   Eliminar
                 </button>
               </div>
@@ -74,13 +72,17 @@ function CartDrawer({ isOpen, closeDrawer }) {
 
       {/* Subtotal + ir a pagar */}
       <div className="cart-drawer__subtotal">
-        <p>Subtotal: {subtotal.toLocaleString('es-CL')} CLP</p>
+        <p>Subtotal: {totals.subtotal.toLocaleString('es-CL')} CLP</p>
+        <p className="text-muted small">Envío: {totals.shipping.toLocaleString('es-CL')} CLP</p>
+        <p className="text-muted small">IVA: {totals.tax.toLocaleString('es-CL')} CLP</p>
+        <p className="fw-bold">Total: {totals.total.toLocaleString('es-CL')} CLP</p>
         <button
           className="btn btn-dark w-100 mt-3"
           onClick={() => {
             closeDrawer?.();
             navigate('/cart');
           }}
+          disabled={cart.length === 0}
         >
           Ir a pagar
         </button>

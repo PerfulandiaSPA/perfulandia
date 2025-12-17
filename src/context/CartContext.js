@@ -45,7 +45,11 @@ export function CartProvider({ children }) {
     const clearCart = () => setCart([]);
 
     const totals = useMemo(() => {
-        const subtotal = cart.reduce((acc, p) => acc + (Number(p.price) * p.qty), 0);
+        const subtotal = cart.reduce((acc, p) => {
+            const price = Number(p.price) || 0;
+            const qty = Number(p.qty) || 1;
+            return acc + (price * qty);
+        }, 0);
         const shipping = subtotal > 0 ? 2990 : 0;
         const tax = Math.round(subtotal * 0.19);  // IVA 19%
 
@@ -54,8 +58,14 @@ export function CartProvider({ children }) {
         // Si el precio en BD ya es final: subtotal + shipping (y el tax es solo informativo)
         const total = subtotal + shipping + tax;
 
-        const items = cart.reduce((acc, p) => acc + p.qty, 0);
-        return { items, subtotal, shipping, tax, total };
+        const items = cart.reduce((acc, p) => acc + (Number(p.qty) || 1), 0);
+        return { 
+            items, 
+            subtotal: Math.round(subtotal), 
+            shipping, 
+            tax, 
+            total: Math.round(total) 
+        };
     }, [cart]);
 
     return (

@@ -39,7 +39,7 @@ export default function PerfumeDetail() {
 		);
 	}
 
-	const { productName, price, image, descPerfume, size, stock } = perfume;
+	const { productName = 'Sin nombre', price, image, descPerfume = 'Sin descripción', size = 'N/A', stock = 0 } = perfume;
 
 	const handleQtyChange = (e) => {
 		const value = Math.max(1, Number(e.target.value) || 1);
@@ -50,6 +50,10 @@ export default function PerfumeDetail() {
 		// si quieres respetar la cantidad elegida, pasa qty en el producto
 		addToCart({ ...perfume, qty });
 	};
+
+	// Debug: asegurar que price es un número
+	const priceNum = Number(price);
+	const priceFormatted = isNaN(priceNum) ? 'Precio no disponible' : priceNum.toLocaleString('es-CL');
 
 	return (
 		<main>
@@ -65,7 +69,7 @@ export default function PerfumeDetail() {
 
 					<Col md={7}>
 						<h2 className="mb-2">{productName}</h2>
-						<h4 className="mb-3">CLP {Number(price).toLocaleString('es-CL')}</h4>
+						<h4 className="mb-3">CLP ${priceFormatted}</h4>
 
 						<input
 							type="number"

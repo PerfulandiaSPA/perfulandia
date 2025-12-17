@@ -103,8 +103,8 @@ export default function CheckoutPage() {
                             <h5>Resumen</h5>
                             <ul className="list-unstyled small">
                                 {cart.map(p => (
-                                    <li key={p.id} className="d-flex justify-content-between">
-                                        <span>{p.name} × {p.qty}</span>
+                                    <li key={p.idPerfume} className="d-flex justify-content-between">
+                                        <span>{p.productName} × {p.qty}</span>
                                         <span>${(p.price * p.qty).toLocaleString()}</span>
                                     </li>
                                 ))}

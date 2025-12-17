@@ -18,8 +18,7 @@ const initialForm = {
     size: '',
     descPerfume: '',
     isActive: true,
-    categoryGender: null,
-    categoryFragancy: null
+    categoryGender: null
 };
 
 export default function PerfumeForm() {
@@ -80,8 +79,7 @@ export default function PerfumeForm() {
                 size: form.size.trim(),
                 descPerfume: form.descPerfume.trim(),
                 isActive: form.isActive,
-                categoryGender: form.categoryGender ? { idCategory: form.categoryGender } : null,
-                categoryFragancy: null
+                categoryGender: form.categoryGender ? { idCategory: form.categoryGender } : null
             };
 
             const nuevo = await createPerfume(payload);

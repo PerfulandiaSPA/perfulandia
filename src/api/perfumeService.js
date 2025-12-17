@@ -2,7 +2,7 @@ import api from './cliente';
 
 export async function getAllPerfumes() {
     const response = await api.get(`api/v1/perfumes`);
-    return response;
+    return Array.isArray(response) ? response : (response.data || response || []);
 }
 
 export async function getPerfumeById(id) {

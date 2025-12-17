@@ -34,7 +34,7 @@ export default function Cart() {
                         </thead>
                         <tbody>
                             {cart.map(p => (
-                                <tr key={p.id}>
+                                <tr key={p.idPerfume}>
                                     <td>
                                         <div className="d-flex align-items-center gap-3">
                                             {p.image && <img src={p.image} alt={p.productName} width="60" height="60" style={{ objectFit: 'cover' }} />}
@@ -50,12 +50,12 @@ export default function Cart() {
                                             type="number"
                                             min={1}
                                             value={p.qty}
-                                            onChange={(e) => updateQty(p.id, e.target.value)}
+                                            onChange={(e) => updateQty(p.idPerfume, e.target.value)}
                                         />
                                     </td>
                                     <td>${(p.price * p.qty).toLocaleString()}</td>
                                     <td>
-                                        <Button variant="outline-danger" size="sm" onClick={() => removeFromCart(p.id)}>
+                                        <Button variant="outline-danger" size="sm" onClick={() => removeFromCart(p.idPerfume)}>
                                             Quitar
                                         </Button>
                                     </td>
