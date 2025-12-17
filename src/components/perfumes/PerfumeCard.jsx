@@ -29,12 +29,6 @@ export default function PerfumeCard({ product, onAdd }) {
                 <Card.Subtitle className="mb-2 text-muted">
                     {product.brand || 'Sin marca'}
                 </Card.Subtitle>
-                <p className="text-sm">
-                    {product.descPerfume || product.description || 'Sin descripción'}
-                </p>
-                <p className="text-muted small">
-                    <strong>Tamaño:</strong> {product.size || product.volume || 'N/A'}
-                </p>
                 <div className="d-flex justify-content-between align-items-center">
                     <Card.Text className="mb-0">
                         <strong>${Number(product.price).toLocaleString('es-CL')}</strong>
