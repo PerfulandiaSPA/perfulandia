@@ -17,7 +17,7 @@
   border-right: 1px solid #333;
 }
 
-.titulo-perfume {
+.titulo-perfume-nav {
   font-family: var(--font-title);
   font-weight: 700;
   letter-spacing: 3px;
@@ -26,6 +26,20 @@
   color: white !important;
   font-style: italic;
   text-shadow: 0 12px 7px rgba(255, 255, 255, 0.3);
+}
+
+.titulo-perfume-nav:hover {
+  color: var(--accent-color) !important;
+  /* Se pone dorado al pasar el mouse */
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+/* Esto sera por mientras */
+.titulo-perfume {
+  color: #000000;
+  font-style: italic;
+  text-shadow: 0 2px 7px rgb(0, 0, 0);
 }
 
 .titulo-perfume:hover {
