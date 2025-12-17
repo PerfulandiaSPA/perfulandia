@@ -257,7 +257,7 @@ export default function PerfumeForm() {
                                         <Form.Check
                                             type="switch"
                                             id="custom-switch"
-                                            label={form.isActive ? "Producto Activo (Visible)" : "Producto Oculto"}
+                                            label={form.isActive ? "Producto en Oferta" : "Producto Regular"}
                                             name="isActive"
                                             checked={form.isActive}
                                             onChange={handleChange}
@@ -344,7 +344,7 @@ export default function PerfumeForm() {
                                         </Badge>
                                     </td>
                                     <td>
-                                        {perfume.isActive ? <Badge bg="success" className="rounded-pill">Activo</Badge> : <Badge bg="secondary" className="rounded-pill">Oculto</Badge>}
+                                        {perfume.isActive ? <Badge bg="primary" className="rounded-pill">En Oferta</Badge> : <Badge bg="light" text="dark" className="border">Regular</Badge>}
                                     </td>
                                     <td className="text-end pe-4">
                                         <Button
