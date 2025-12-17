@@ -28,7 +28,7 @@ export default function NavBarVertical() {
 
       <Offcanvas show={show} onHide={() => setShow(false)} placement="start" className="custom-offcanvas">
         <Offcanvas.Header closeButton closeVariant="white">
-          <Offcanvas.Title className="titulo-perfume">PERFULANDIA</Offcanvas.Title>
+          <Offcanvas.Title className="titulo-perfume-nav">PERFULANDIA</Offcanvas.Title>
         </Offcanvas.Header>
 
         <Offcanvas.Body>
