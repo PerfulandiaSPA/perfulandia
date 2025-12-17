@@ -1,0 +1,21 @@
+/* src/components/home/DealsSection.css */
+
+.deals-section {
+  padding: 50px 20px;
+  background-color: #fffafc; /* Un rosa muy pálido para un toque femenino */
+  text-align: center;
+}
+
+.deals-section-title {
+  font-size: 3em;
+  color: #d81b60; /* Un rosa más intenso */
+  margin-bottom: 40px;
+}
+
+.deals-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
