@@ -3,6 +3,7 @@ import api from './cliente';
 export async function getAllCategories() {
     try {
         const result = await api.get(`/api/v1/categories`);
+        console.log('Categorías recibidas del backend:', result);
         return Array.isArray(result) ? result : (result.data || []);
     } catch (error) {
         console.error('Error fetching categories:', error);

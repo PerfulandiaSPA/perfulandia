@@ -55,6 +55,10 @@ export default function PerfumeForm() {
     useEffect(() => {
         loadData();
     }, []);
+    
+    useEffect(() => {
+        console.log('Categories updated:', categories);
+    }, [categories]);
 
     function handleChange(e) {
         const { name, value, type, checked } = e.target;
@@ -79,18 +83,24 @@ export default function PerfumeForm() {
                 size: form.size.trim(),
                 descPerfume: form.descPerfume.trim(),
                 isActive: form.isActive,
-                categoryGender: form.categoryGender ? { idCategory: form.categoryGender } : null
+                categoryGenderId: form.categoryGender
             };
+            
+            console.log('Payload enviado:', payload);
 
             const nuevo = await createPerfume(payload);
+            
+            // Actualizar perfumes inmediatamente
             setPerfumes((prev) => [...prev, nuevo]);
+            
+            // Resetear solo el formulario, NO las categorías
             setForm({ ...initialForm });
             setError('');
-            // Recarga las categorías para asegurar disponibilidad
-            await loadData();
+            
+            console.log('Perfume creado exitosamente:', nuevo);
         } catch (e) {
-            console.error(e);
-            setError('Error al crear el perfume (revisa validaciones del backend)');
+            console.error('Error completo:', e);
+            setError(`Error al crear el perfume: ${e.message || 'Error desconocido'}`);
         } finally {
             setLoading(false);
         }
@@ -203,6 +213,7 @@ export default function PerfumeForm() {
                                 value={form.categoryGender || ''}
                                 onChange={handleChange}
                                 required
+                                disabled={loading}
                             >
                                 <option value="">-- Selecciona un género --</option>
                                 {genderCategories && genderCategories.length > 0 ? (
@@ -212,7 +223,7 @@ export default function PerfumeForm() {
                                         </option>
                                     ))
                                 ) : (
-                                    <option disabled>Cargando géneros...</option>
+                                    <option disabled>No hay géneros disponibles</option>
                                 )}
                             </Form.Select>
                         </Form.Group>
