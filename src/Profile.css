@@ -1,0 +1,120 @@
+/* --- ESTILOS DE PERFIL PREMIUM --- */
+
+/* Fondo general suave */
+.profile-bg {
+    background-color: #f8f9fa;
+    background-image: radial-gradient(#e9ecef 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Tarjeta Principal */
+.profile-card {
+    border-radius: 20px;
+    background: white;
+    position: relative;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Fondo decorativo superior (Dorado degradado) */
+.profile-header-bg {
+    height: 120px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+    position: relative;
+    margin-bottom: 60px;
+    /* Espacio para que el avatar "flote" encima */
+}
+
+.relative-z {
+    position: relative;
+    z-index: 2;
+}
+
+/* Avatar Circular */
+.avatar-container {
+    width: 120px;
+    height: 120px;
+    background-color: #fff;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    margin-top: -120px;
+    /* Esto hace que suba y quede mitad en lo negro, mitad en blanco */
+    color: #1a1a1a;
+}
+
+.avatar-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+/* Tipografía */
+.profile-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.letter-spacing-1 {
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.divider-light {
+    opacity: 0.1;
+}
+
+/* Cajas de estadísticas */
+.stat-box {
+    border: 1px solid #f0f0f0;
+    transition: transform 0.2s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    border-color: #d4af37;
+    /* Dorado al hover */
+    background-color: #fffcf5;
+}
+
+/* Botones */
+.btn-profile-action {
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-profile-logout {
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    background-color: #1a1a1a;
+    border: none;
+    transition: all 0.3s;
+}
+
+.btn-profile-logout:hover {
+    background-color: #d4af37;
+    /* Dorado */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

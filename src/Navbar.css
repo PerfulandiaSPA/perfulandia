@@ -1,107 +1,114 @@
-/* 1) Logo a la izquierda, nav a la derecha */
-.navbar.bg-body-tertiary .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* --- Variables (Coherencia con el Sidebar) --- */
+:root {
+  --nav-bg: #ffffff;
+  /* Blanco puro para la barra superior */
+  --nav-text: #1a1a1a;
+  /* Negro suave para texto */
+  --accent-color: #d4af37;
+  /* Dorado */
+  --font-body: 'Montserrat', sans-serif;
 }
 
-/* 2) Anular el comportamiento de .me-auto y empujar el Nav a la derecha */
-.navbar .navbar-collapse .navbar-nav.me-auto {
-  margin-right: 0 !important;
-  margin-left: auto !important;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  /* espacio entre "Login" y el carrito */
+/* --- Barra Principal --- */
+.main-navbar {
+  background-color: var(--nav-bg) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  /* Línea sutil abajo */
+  padding: 15px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  /* Sombra muy suave */
+  z-index: 1020;
+  /* Por debajo del sidebar (que suele ser 1045) */
 }
 
-/* 3) Tamaño del logo */
-.navbar-brand img {
-  width: 200px;
-  height: auto;
+/* --- Enlaces (Iniciar Sesión / Profile) --- */
+.nav-link-custom {
+  font-family: var(--font-body);
+  color: var(--nav-text) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin-right: 15px;
 }
 
-/* 4) (opcional) look limpio del navbar */
-.navbar.bg-body-tertiary {
-  background-color: #fff !important;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
-  padding: .6rem 0;
+.nav-link-custom:hover {
+  color: var(--accent-color) !important;
 }
 
-/* --- Tu carrito tal cual --- */
+/* --- Botón Admin --- */
+.btn-admin {
+  font-family: var(--font-body);
+  background-color: #1a1a1a;
+  color: #fff;
+  border: none;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  margin-right: 15px;
+  transition: all 0.3s ease;
+}
+
+.btn-admin:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* --- Logo --- */
+.navbar-logo {
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.02);
+  /* Efecto sutil al pasar el mouse por el logo */
+}
+
+/* --- Contenedor del Carrito --- */
 .cart-btn-container {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cart-btn {
   background: none;
   border: none;
-  display: flex;
-  align-items: center;
+  position: relative;
   cursor: pointer;
+  padding: 5px;
+  color: var(--nav-text);
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
-.cart-icon {
-  width: 22px;
-  height: 22px;
+.cart-btn:hover {
+  color: var(--accent-color);
+  transform: scale(1.1);
 }
 
+/* Contador del Carrito (La bolita roja/dorada) */
 .cart-count {
   position: absolute;
-  top: -5px;
-  right: -8px;
-  background: #000;
-  color: #fff;
+  top: -2px;
+  right: -5px;
+  background-color: var(--accent-color);
+  /* Usamos el dorado o rojo si prefieres */
+  color: white;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
   border-radius: 50%;
-  padding: 1px 5px;
-  font-size: 12px;
-}
-
-/* Elimina padding lateral del container del navbar */
-.navbar.bg-body-tertiary .container {
-  max-width: 100%;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-/* Logo bien a la izquierda */
-.navbar-brand {
-  margin-left: 3rem;
-  /* ajusta el valor según cuánto quieras */
-}
-
-/* Login + carrito bien a la derecha */
-.navbar .navbar-collapse .navbar-nav.me-auto {
-  margin-right: 10rem !important;
-}
-
-/* separa "Login" del icono del carrito */
-.navbar .navbar-collapse .navbar-nav.me-auto {
   display: flex;
   align-items: center;
-  gap: 3rem;
-  /* <-- aumenta o reduce este valor según lo que quieras */
-}
-
-/* --- Aumenta tamaño de "Login" --- */
-.navbar .nav-link {
-  font-size: 1.15rem;
-  /* texto más grande */
-  font-weight: 600;
-  /* más grueso */
-}
-
-/* --- Aumenta tamaño del ícono del carrito --- */
-.cart-btn svg {
-  width: 28px;
-  /* antes 22-24px */
-  height: 28px;
-}
-
-/* --- Aumenta el número del contador también --- */
-.cart-count {
-  font-size: 14px;
-  top: -7px;
-  right: -10px;
-  padding: 2px 6px;
+  justify-content: center;
+  border: 2px solid #fff;
+  /* Borde blanco para separarlo del icono */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

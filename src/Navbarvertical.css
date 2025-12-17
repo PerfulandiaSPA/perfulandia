@@ -1,26 +1,209 @@
-/* Contenedor general del botón */
-.menu-toggle {
-  background: none;           /* sin fondo */
-  border: none;               /* sin borde */
-  padding: 0;                 /* sin espacio interno */
-  margin: 0;
+/* --- Variables de estilo (Puedes cambiarlas) --- */
+:root {
+  --primary-bg: #1a1a1a;
+  /* Fondo oscuro elegante */
+  --text-color: #ffffff;
+  /* Texto blanco */
+  --accent-color: #d4af37;
+  /* Dorado para hover */
+  --hover-bg: rgba(255, 255, 255, 0.05);
+  /* Fondo sutil al pasar mouse */
+}
+
+/* --- Estilo del Panel Lateral (Offcanvas) --- */
+.custom-offcanvas {
+  background-color: var(--primary-bg) !important;
+  color: var(--text-color);
+  border-right: 1px solid #333;
+}
+
+.titulo-perfume {
+  font-family: var(--font-title);
+  font-weight: 700;
+  letter-spacing: 3px;
+  font-size: 1.8rem;
+  /* Agrega !important aquí */
+  color: white !important;
+  font-style: italic;
+  text-shadow: 0 12px 7px rgba(255, 255, 255, 0.3);
+}
+
+.titulo-perfume:hover {
+  color: var(--accent-color) !important;
+  /* Se pone dorado al pasar el mouse */
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+/* Botón de cerrar blanco */
+.btn-close-white {
+  filter: invert(1);
+}
+
+/* --- Botón Hamburguesa Flotante --- */
+.menu-toggle-btn {
+  background: transparent;
+  border: none;
   cursor: pointer;
+  padding: 10px;
   display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle-btn:hover {
+  transform: scale(1.1);
+}
+
+.burger-line {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background-color: #333;
+  /* Color de las líneas fuera del menú */
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* --- Estilos de los Links --- */
+.nav-container {
+  padding-top: 20px;
+}
+
+.nav-main-link {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  padding: 15px 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
+  color: var(--text-color);
+  text-decoration: none;
 }
 
-/* SVG del ícono (las 3 líneas) */
-.menu-toggle svg {
-  width: 38px;     /* tamaño más grande (puedes subir a 42px si quieres) */
-  height: 38px;
-  stroke: #000;    /* color negro */
-  stroke-width: 2; /* grosor de las líneas */
-  transition: transform 0.2s ease;
+.link-text {
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  width: 100%;
 }
 
-/* efecto visual suave al pasar el mouse */
-.menu-toggle:hover svg {
-  transform: scale(1.1); /* agranda un poco al pasar el cursor */
-  opacity: 0.8;
+/* Efecto Hover en el Item Principal */
+.nav-item-group:hover .nav-main-link {
+  background-color: var(--hover-bg);
+  padding-left: 25px;
+  /* Pequeño deslizamiento a la derecha */
+  color: var(--accent-color);
+}
+
+/* Icono de flecha */
+.arrow-icon {
+  transition: transform 0.3s ease;
+  opacity: 0.7;
+}
+
+.arrow-icon.rotate {
+  transform: rotate(180deg);
+  opacity: 1;
+  color: var(--accent-color);
+}
+
+/* --- Animación del Submenú (Acordeón) --- */
+.submenu-wrapper {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.submenu-wrapper.open {
+  max-height: 200px;
+  /* Altura suficiente para el contenido */
+  opacity: 1;
+}
+
+.submenu-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0 15px 30px;
+  /* Sangría para subitems */
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  margin-left: 20px;
+}
+
+.submenu-link {
+  color: #aaa;
+  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 0.95rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Efecto Hover en Subitems */
+.submenu-link:hover {
+  color: var(--text-color);
+  transform: translateX(5px);
+  /* Se mueve un poco a la derecha */
+}
+
+/* Indicador visual de link activo */
+.submenu-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.submenu-link:hover::before,
+.submenu-link.active-link::before {
+  width: 10px;
+  /* Aparece una linea dorada a la izquierda */
+}
+
+.submenu-link.active-link {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* Navbarvertical.css */
+
+:root {
+  --primary-bg: #1a1a1a;
+  --text-color: #ffffff;
+  --accent-color: #d4af37;
+  /* Dorado */
+  --hover-bg: rgba(255, 255, 255, 0.05);
+
+  /* --- DEFINICIÓN DE FUENTES --- */
+  --font-title: 'Playfair Display', serif;
+  /* Para logotipos y títulos */
+  --font-body: 'Montserrat', sans-serif;
+  /* Para los menús y textos */
+}
+
+
+.link-text {
+  font-family: var(--font-body);
+  font-weight: 500;
+  /* Peso medio para que se lea bien */
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+}
+
+/* 3. Submenú (Hombre, Mujer) */
+.submenu-link {
+  font-family: var(--font-body);
+  font-weight: 400;
+  /* Un poco más fino */
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
 }

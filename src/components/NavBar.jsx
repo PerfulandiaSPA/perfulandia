@@ -1,76 +1,96 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useState } from 'react';
-import CartDrawer from './cart/CartDrawer';
-import NavbarVertically from './NavbarVertically'; // 👈 nombre corregido
-import '../Navbar.css';
 import { Button } from 'react-bootstrap';
+import CartDrawer from './cart/CartDrawer';
+import NavbarVertically from './NavbarVertically';
+import '../Navbar.css';
 
 function NavBar() {
   const { cart } = useCart();
   const { isAuthenticated, isAdmin } = useAuth();
-  const cartItemCount = cart.reduce((total, product) => total + product.qty, 0); // Actualizamos el contador para que sume las cantidades
-  const [isOpen, setIsOpen] = useState(false);
 
+  // Calcular cantidad total
+  const cartItemCount = cart.reduce((total, product) => total + product.qty, 0);
+
+  const [isOpen, setIsOpen] = useState(false);
   const toggleCartDrawer = () => setIsOpen(!isOpen);
 
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary main-navbar">
-        <Container fluid className="d-flex align-items-center justify-content-between">
+      {/* sticky="top" hace que la barra se quede fija al hacer scroll */}
+      <Navbar expand="lg" sticky="top" className="main-navbar">
+        <Container fluid className="px-4 d-flex align-items-center justify-content-between">
 
           {/* 🔹 IZQUIERDA: Hamburguesa + Logo */}
           <div className="d-flex align-items-center gap-3">
-            <NavbarVertically /> {/* botón hamburguesa */}
-            <Navbar.Brand as={Link} to="/">
+            {/* El botón hamburguesa del otro componente */}
+            <NavbarVertically />
+
+            <Navbar.Brand as={Link} to="/" className="p-0 m-0">
               <img
                 src="/resources/images/P1.png"
-                alt="Logo"
-                style={{ width: '200px', height: 'auto' }}
+                alt="Perfulandia Logo"
+                className="navbar-logo"
+                style={{ width: '180px', height: 'auto' }} // Ajusté un poco el tamaño para que sea más sutil
               />
             </Navbar.Brand>
           </div>
 
-          {/* 🔹 DERECHA: Login + Carrito */}
-          <div className="d-flex align-items-center gap-4 me-4">
+          {/* 🔹 DERECHA: Login + Admin + Carrito */}
+          <div className="d-flex align-items-center">
+
+            {/* Lógica de Autenticación */}
             {isAuthenticated ? (
-              <Nav.Link as={Link} to="/profile" className="fs-5 fw-semibold">
-                Profile
+              <Nav.Link as={Link} to="/profile" className="nav-link-custom">
+                Mi Cuenta
               </Nav.Link>
             ) : (
-              <Nav.Link as={Link} to="/login" className="fs-5 fw-semibold">
-                INICIAR SESIÓN
+              <Nav.Link as={Link} to="/login" className="nav-link-custom">
+                Iniciar Sesión
               </Nav.Link>
             )}
 
+            {/* Botón Admin */}
             {isAdmin && (
-              <Button 
-                as={Link} 
-                to="/admin/perfumes" 
-                variant="warning" 
-                className="fw-semibold"
+              <Button
+                as={Link}
+                to="/admin/perfumes"
+                className="btn-admin"
               >
-                Admin
+                Panel Admin
               </Button>
             )}
 
-            <div className="cart-btn-container position-relative">
-              <button className="cart-btn" onClick={toggleCartDrawer}>
-                <span className="cart-icon">
-                  <svg width="28" height="28" viewBox="0 0 24 24">
-                    <path
-                      fill="currentColor"
-                      d="M17 18a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2M1 2h3.27l.94 2H20a1 1 0 0 1 1 1c0 .17-.05.34-.12.5l-3.58 6.47c-.34.61-1 1.03-1.75 1.03H8.1l-.9 1.63-.03.12a.25.25 0 0 0 .25.25H19v2H7a2 2 0 0 1-2-2c0-.35.09-.68.24-.96l1.36-2.45L3 4H1V2m6 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2m9-7 2.78-5H6.14l2.36 5H16Z"
-                    />
+            {/* Botón Carrito */}
+            <div className="cart-btn-container ms-2">
+              <button
+                className="cart-btn"
+                onClick={toggleCartDrawer}
+                aria-label="Ver carrito"
+              >
+                <span className="cart-icon-wrapper">
+                  {/* SVG más limpio */}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                   </svg>
                 </span>
-                <span className="cart-count">{cartItemCount}</span>
+
+                {/* Solo mostramos el contador si hay items */}
+                {cartItemCount > 0 && (
+                  <span className="cart-count animate__animated animate__bounceIn">
+                    {cartItemCount}
+                  </span>
+                )}
               </button>
             </div>
+
           </div>
         </Container>
       </Navbar>

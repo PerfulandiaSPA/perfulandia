@@ -1,0 +1,147 @@
+/* --- Variables Generales --- */
+:root {
+    --primary-black: #1a1a1a;
+    --accent-gold: #d4af37;
+    --font-title: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+/* --- Fondo General --- */
+.login-wrapper {
+    background-color: #f8f9fa;
+    /* Gris muy suave para resaltar la tarjeta */
+    min-height: 90vh;
+    /* Ocupa casi toda la pantalla */
+    display: flex;
+    align-items: center;
+}
+
+/* --- Tarjeta del Login --- */
+.login-card {
+    width: 100%;
+    max-width: 450px;
+    /* Ancho máximo elegante */
+    border: none !important;
+    /* Quita bordes feos */
+    border-radius: 12px !important;
+    background: white;
+    transition: transform 0.3s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
+    /* Efecto sutil de levitación */
+}
+
+/* --- Títulos --- */
+.login-title {
+    font-family: var(--font-title);
+    font-weight: 700;
+    color: var(--primary-black);
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.login-subtitle {
+    font-family: var(--font-body);
+    color: #6c757d;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+/* --- Inputs Personalizados --- */
+.form-label-custom {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #888;
+}
+
+.form-control-custom {
+    border: none;
+    border-bottom: 2px solid #eee;
+    /* Solo línea abajo */
+    border-radius: 0;
+    /* Cuadrado */
+    padding: 10px 0;
+    font-family: var(--font-body);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.form-control-custom:focus {
+    box-shadow: none;
+    /* Quita el brillo azul de Bootstrap */
+    border-bottom-color: var(--primary-black);
+    /* Línea negra al escribir */
+    background: transparent;
+}
+
+.form-control-custom::placeholder {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+/* --- Botón Principal --- */
+.btn-login {
+    background-color: var(--primary-black) !important;
+    border: 1px solid var(--primary-black) !important;
+    color: white !important;
+    font-family: var(--font-body);
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 12px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    /* Ligeramente redondeado */
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: white !important;
+    color: var(--primary-black) !important;
+    border-color: var(--primary-black) !important;
+    transform: scale(1.02);
+}
+
+.btn-login:disabled {
+    background-color: #ccc !important;
+    border-color: #ccc !important;
+    cursor: not-allowed;
+}
+
+/* --- Links de Registro --- */
+.login-footer {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.register-link {
+    color: var(--primary-black);
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.register-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--accent-gold);
+    transition: width 0.3s ease;
+}
+
+.register-link:hover {
+    color: var(--accent-gold);
+}
+
+.register-link:hover::after {
+    width: 100%;
+    /* Subrayado dorado animado */
+}

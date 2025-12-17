@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+
+.register-wrapper {
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* --- Columna de VIDEO --- */
+.register-video-container {
+    position: relative;
+    height: 100vh;
+    /* Ocupa toda la altura */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* El elemento <video> en sí */
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* ESTO ES MAGIA: hace que el video cubra todo sin deformarse */
+    z-index: 0;
+    /* Al fondo */
+}
+
+/* Capa oscura sobre el video */
+.video-overlay-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* Un poco más oscuro para que el texto resalte más sobre video */
+    z-index: 1;
+    /* Sobre el video */
+}
+
+/* Texto de marca sobre todo */
+.brand-overlay {
+    position: relative;
+    z-index: 2;
+    /* Sobre la capa oscura */
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* --- Columna del Formulario (Igual que antes) --- */
+.register-form-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 2rem;
+}
+
+/* Tipografía */
+.font-playfair {
+    font-family: 'Playfair Display', serif;
+}
+
+.font-light {
+    font-weight: 300;
+    letter-spacing: 2px;
+    /* Un poco más de espaciado para lujo */
+}
+
+/* Inputs Personalizados */
+.custom-auth-input {
+    border: none;
+    border-bottom: 2px solid #f0f0f0;
+    border-radius: 0;
+    padding: 12px 0;
+    font-size: 1rem;
+    background-color: transparent;
+    transition: all 0.3s;
+}
+
+.custom-auth-input:focus {
+    box-shadow: none;
+    border-bottom-color: #d4af37;
+    background-color: transparent;
+}
+
+.custom-auth-input::placeholder {
+    color: #ccc;
+    font-weight: 300;
+}
+
+/* Botón Dorado */
+.btn-auth-gold {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+.btn-auth-gold:hover {
+    background-color: #d4af37;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+}
+
+.btn-auth-gold:disabled {
+    background-color: #ccc;
+}
+
+/* Link */
+.auth-link {
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: color 0.2s;
+    border-bottom: 1px solid transparent;
+}
+
+.auth-link:hover {
+    color: #d4af37;
+    border-bottom-color: #d4af37;
+}

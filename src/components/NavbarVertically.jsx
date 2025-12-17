@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Offcanvas, Nav } from 'react-bootstrap';
+// Si no tienes react-icons instalada, puedes usar SVGs normales o instalarla con: npm install react-icons
+// import { FaChevronDown } from 'react-icons/fa'; 
 import '../Navbarvertical.css';
 
 export default function NavBarVertical() {
@@ -12,70 +14,75 @@ export default function NavBarVertical() {
 
   const handleNavigate = (url) => {
     navigate(url);
-    setShow(false); // cierra el panel
+    setShow(false);
   };
 
   return (
-    <div className="navbar-vertical">
-      {/* Botón hamburguesa simple */}
-      <button className="menu-toggle" onClick={() => setShow(true)}>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M3 6h18M3 12h18M3 18h18"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        </svg>
+    <>
+      {/* Botón flotante elegante */}
+      <button className="menu-toggle-btn" onClick={() => setShow(true)}>
+        <span className="burger-line"></span>
+        <span className="burger-line"></span>
+        <span className="burger-line"></span>
       </button>
 
-      {/* Menú lateral (Offcanvas) */}
-      <Offcanvas show={show} onHide={() => setShow(false)} placement="start">
-        <Offcanvas.Header closeButton>
+      <Offcanvas show={show} onHide={() => setShow(false)} placement="start" className="custom-offcanvas">
+        <Offcanvas.Header closeButton closeVariant="white">
           <Offcanvas.Title className="titulo-perfume">PERFULANDIA</Offcanvas.Title>
         </Offcanvas.Header>
 
         <Offcanvas.Body>
-          <Nav className="flex-column gap-2">
-            {/* PERFUMES con submenu */}
+          <Nav className="flex-column nav-container">
+
+            {/* ITEM PRINCIPAL CON SUBMENU */}
             <div
-              className="submenu-container"
+              className={`nav-item-group ${subOpen ? 'active' : ''}`}
               onMouseEnter={() => setSubOpen(true)}
               onMouseLeave={() => setSubOpen(false)}
             >
-              <Nav.Link
-                as={Link}
-                to="/perfumes?cat=all"
-                onClick={() => handleNavigate('/perfumes?cat=all')}
-                className="submenu-title"
-              >
-                Perfumes
-              </Nav.Link>
+              <div className="nav-main-link">
+                <Link
+                  to="/perfumes?cat=all"
+                  onClick={() => handleNavigate('/perfumes?cat=all')}
+                  className="link-text"
+                >
+                  Perfumes
+                </Link>
+                {/* Flechita animada (SVG simple si no usas react-icons) */}
+                <span className={`arrow-icon ${subOpen ? 'rotate' : ''}`}>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                    <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </div>
 
-              {subOpen && (
-                <div className="submenu-items">
-                  <Nav.Link
-                    as={Link}
+              {/* CONTENEDOR DEL SUBMENU (Siempre renderizado, oculto por CSS) */}
+              <div className={`submenu-wrapper ${subOpen ? 'open' : ''}`}>
+                <div className="submenu-inner">
+                  <Link
                     to="/perfumes?cat=Hombre"
-                    active={cat === 'Hombre'}
+                    className={`submenu-link ${cat === 'Hombre' ? 'active-link' : ''}`}
                     onClick={() => handleNavigate('/perfumes?cat=Hombre')}
                   >
                     Hombre
-                  </Nav.Link>
-                  <Nav.Link
-                    as={Link}
+                  </Link>
+                  <Link
                     to="/perfumes?cat=Mujer"
-                    active={cat === 'Mujer'}
+                    className={`submenu-link ${cat === 'Mujer' ? 'active-link' : ''}`}
                     onClick={() => handleNavigate('/perfumes?cat=Mujer')}
                   >
                     Mujer
-                  </Nav.Link>
+                  </Link>
                 </div>
-              )}
+              </div>
             </div>
+
+            {/* AQUÍ PUEDES AGREGAR MÁS LINKS SIMPLES */}
+            {/* <Link to="/contacto" className="simple-link">Contacto</Link> */}
+
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>
-    </div>
+    </>
   );
 }

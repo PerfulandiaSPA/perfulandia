@@ -9,12 +9,14 @@ import CheckoutPage from '../pages/Checkout';
 import ProfileScreen from '../pages/Profile';
 import PerfumeForm from '../pages/PerfumeForm';
 import PrivateRoute from './PrivateRoute';
+import Register from '../pages/Register';
 
 
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
+    <Route path="/register" element={<Register />} />
     <Route path="/perfumes" element={<Perfumes />} />
     <Route path="/perfumes/:id" element={<PerfumeDetail />} />
     <Route path="/cart" element={<Cart />} />
