@@ -33,7 +33,7 @@ export default function Perfumes() {
     // Filtrar perfumes según la categoría
     const list = useMemo(() => {
         if (cat === 'all') return perfumes;
-        return perfumes.filter(p => p.categoryGender?.name === cat || p.category === cat);
+        return perfumes.filter(p => p.categoryGender?.gender === cat);
     }, [perfumes, cat]);
 
     if (loading) return (

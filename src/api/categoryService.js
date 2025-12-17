@@ -1,26 +1,27 @@
 import api from './cliente';
 
 export async function getAllCategories() {
-    const response = await api.get(`/category`);
-    return response;
+    try {
+        const result = await api.get(`/api/v1/categories`);
+        return Array.isArray(result) ? result : (result.data || []);
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+        return [];
+    }
 }
 
 export async function getCategoryById(id) {
-    const response = await api.get(`/category/${id}`);
-    return response;
+    return api.get(`/api/v1/categories/${id}`);
 }
 
-export async function createCategory(perfume) {
-    const response = await api.post(`/category`, category);
-    return response;
+export async function createCategory(category) {
+    return api.post(`/api/v1/categories`, category);
 }
 
 export async function deleteCategory(id) {
-    const response = await api.delete(`/category/${id}`);
-    return response;
+    return api.delete(`/api/v1/categories/${id}`);
 }
 
-export async function updateCategory(id, libro) {
-    const response = await api.put(`/category/${id}`, category);
-    return response;
+export async function updateCategory(id, category) {
+    return api.put(`/api/v1/categories/${id}`, category);
 }

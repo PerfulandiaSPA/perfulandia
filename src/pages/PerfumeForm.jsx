@@ -7,6 +7,7 @@ import {
     createPerfume,
     deletePerfume
 } from '../api/perfumeService';
+import { getAllCategories } from '../api/categoryService';
 
 const initialForm = {
     productName: '',
@@ -17,39 +18,51 @@ const initialForm = {
     size: '',
     descPerfume: '',
     isActive: true,
-    categoryGender: '',
-    categoryFragancy: ''
+    categoryGender: null,
+    categoryFragancy: null
 };
 
 export default function PerfumeForm() {
     const { addToCart } = useCart();
 
     const [perfumes, setPerfumes] = useState([]);
+    const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [form, setForm] = useState(initialForm);
 
-    async function loadPerfumes() {
+    async function loadData() {
         try {
             setLoading(true);
             setError('');
-            const data = await getAllPerfumes();
-            setPerfumes(Array.isArray(data) ? data : data.data || []);
+            const perfumesData = await getAllPerfumes();
+            setPerfumes(Array.isArray(perfumesData) ? perfumesData : perfumesData.data || []);
+            
+            const categoriesData = await getAllCategories();
+            const catsArray = Array.isArray(categoriesData) ? categoriesData : (categoriesData?.data || []);
+            setCategories(catsArray);
+            
+            if (catsArray.length === 0) {
+                console.warn('No categories found');
+            }
         } catch (e) {
             console.error(e);
-            setError('Error al cargar los perfumes');
+            setError('Error al cargar los datos');
         } finally {
             setLoading(false);
         }
     }
 
     useEffect(() => {
-        loadPerfumes();
+        loadData();
     }, []);
 
     function handleChange(e) {
-        const { name, value } = e.target;
-        setForm((prev) => ({ ...prev, [name]: value }));
+        const { name, value, type, checked } = e.target;
+        setForm((prev) => ({ 
+            ...prev, 
+            [name]: type === 'checkbox' ? checked : (name.includes('category') ? (value ? Number(value) : null) : value)
+        }));
     }
 
     async function handleSubmit(e) {
@@ -66,12 +79,17 @@ export default function PerfumeForm() {
                 image: form.image.trim(),
                 size: form.size.trim(),
                 descPerfume: form.descPerfume.trim(),
-                isActive: form.isActive
+                isActive: form.isActive,
+                categoryGender: form.categoryGender ? { idCategory: form.categoryGender } : null,
+                categoryFragancy: null
             };
 
             const nuevo = await createPerfume(payload);
             setPerfumes((prev) => [...prev, nuevo]);
-            setForm(initialForm);
+            setForm({ ...initialForm });
+            setError('');
+            // Recarga las categorías para asegurar disponibilidad
+            await loadData();
         } catch (e) {
             console.error(e);
             setError('Error al crear el perfume (revisa validaciones del backend)');
@@ -87,7 +105,7 @@ export default function PerfumeForm() {
             setLoading(true);
             setError('');
             await deletePerfume(id);
-            setPerfumes((prev) => prev.filter((perfume) => perfume.id !== id));
+            setPerfumes((prev) => prev.filter((perfume) => perfume.idPerfume !== id));
         } catch (e) {
             console.error(e);
             setError('Error al eliminar el perfume');
@@ -99,6 +117,9 @@ export default function PerfumeForm() {
     function handleAddToCart(perfume) {
         addToCart(perfume);
     }
+
+    // Agrupar categorías por género
+    const genderCategories = categories.filter(cat => cat.gender);
 
     return (
         <main className="container">
@@ -177,6 +198,27 @@ export default function PerfumeForm() {
                             />
                         </Form.Group>
 
+                        <Form.Group className="mb-2">
+                            <Form.Label>Género *</Form.Label>
+                            <Form.Select
+                                name="categoryGender"
+                                value={form.categoryGender || ''}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="">-- Selecciona un género --</option>
+                                {genderCategories && genderCategories.length > 0 ? (
+                                    genderCategories.map(cat => (
+                                        <option key={cat.idCategory} value={cat.idCategory}>
+                                            {cat.gender}
+                                        </option>
+                                    ))
+                                ) : (
+                                    <option disabled>Cargando géneros...</option>
+                                )}
+                            </Form.Select>
+                        </Form.Group>
+
                         <Form.Group className="mb-3">
                             <Form.Label>Descripción *</Form.Label>
                             <Form.Control
@@ -196,7 +238,7 @@ export default function PerfumeForm() {
                                 name="isActive"
                                 label="Activo"
                                 checked={form.isActive}
-                                onChange={(e) => setForm(prev => ({ ...prev, isActive: e.target.checked }))}
+                                onChange={handleChange}
                             />
                         </Form.Group>
 
@@ -223,6 +265,7 @@ export default function PerfumeForm() {
                             <th>Marca</th>
                             <th>Precio</th>
                             <th>Stock</th>
+                            <th>Género</th>
                             <th>Tamaño</th>
                             <th>Estado</th>
                             <th>Acciones</th>
@@ -236,6 +279,7 @@ export default function PerfumeForm() {
                                 <td>{perfume.brand}</td>
                                 <td>${Number(perfume.price).toLocaleString('es-CL')}</td>
                                 <td>{perfume.stock}</td>
+                                <td>{perfume.categoryGender?.gender || 'N/A'}</td>
                                 <td>{perfume.size}</td>
                                 <td>{perfume.isActive ? 'Activo' : 'Inactivo'}</td>
                                 <td>
