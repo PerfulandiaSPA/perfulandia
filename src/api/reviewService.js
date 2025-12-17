@@ -20,7 +20,7 @@ export async function deleteReview(id) {
     return response;
 }
 
-export async function updateReview(id, libro) {
+export async function updateReview(id, perfume) {
     const response = await api.get(`/reviews/${id}`, review);
     return response;
 }
