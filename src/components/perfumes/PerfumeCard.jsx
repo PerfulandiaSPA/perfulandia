@@ -13,16 +13,16 @@ export default function PerfumeCard({ product, onAdd }) {
     };
 
     return (
-        <Card 
+        <Card
             className="h-100 perfume-card"
             onClick={handleCardClick}
             style={{ cursor: 'pointer' }}
         >
-            <Card.Img 
-                variant="top" 
-                src={product.image || product.imageUrl || 'https://via.placeholder.com/200'} 
+            <Card.Img
+                variant="top"
+                src={product.image || product.imageUrl || 'https://via.placeholder.com/200'}
                 alt={product.productName || product.name}
-                style={{ height: '200px', objectFit: 'cover' }}
+                style={{ height: '200px', objectFit: 'contain' }}
             />
             <Card.Body>
                 <Card.Title>{product.productName || product.name}</Card.Title>
@@ -39,9 +39,9 @@ export default function PerfumeCard({ product, onAdd }) {
                     <Card.Text className="mb-0">
                         <strong>${Number(product.price).toLocaleString('es-CL')}</strong>
                     </Card.Text>
-                    <Button 
-                        variant="primary" 
-                        size="sm" 
+                    <Button
+                        variant="primary"
+                        size="sm"
                         onClick={(e) => {
                             e.stopPropagation(); // Evita que se navegue al detalle
                             onAdd();

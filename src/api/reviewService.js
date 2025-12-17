@@ -1,26 +1,45 @@
 import api from './cliente';
 
 export async function getAllReviews() {
-    const response = await api.get(`/reviews`);
-    return response;
+    return await api.get(`api/v1/reviews`);
 }
+
 
 export async function getReviewById(id) {
-    const response = await api.get(`/reviews/${id}`);
-    return response;
+    return await api.get(`api/v1/reviews/${id}`);
 }
 
-export async function createReview(perfume) {
-    const response = await api.get(`/reviews`, review);
-    return response;
+export async function getReviewsByPerfumeId(perfumeId) {
+    try {
+
+        const allReviews = await api.get('api/v1/reviews');
+
+        console.log("Reviews recibidas del backend:", allReviews); // Para depurar
+
+        // Ahora sí podemos filtrar porque allReviews es un Array
+        if (Array.isArray(allReviews)) {
+            return allReviews.filter(r =>
+                r.perfume && r.perfume.idPerfume === Number(perfumeId)
+            );
+        } else {
+            console.error("La respuesta no es un array:", allReviews);
+            return [];
+        }
+
+    } catch (error) {
+        console.error("Error filtrando reviews:", error);
+        return [];
+    }
+}
+
+export async function createReview(reviewData) {
+    return await api.post(`api/v1/reviews`, reviewData);
 }
 
 export async function deleteReview(id) {
-    const response = await api.get(`/reviews/${id}`);
-    return response;
+    return await api.delete(`api/v1/reviews/${id}`);
 }
 
-export async function updateReview(id, perfume) {
-    const response = await api.get(`/reviews/${id}`, review);
-    return response;
+export async function updateReview(id, reviewData) {
+    return await api.put(`api/v1/reviews/${id}`, reviewData);
 }
