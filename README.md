@@ -1,43 +1,40 @@
-# perfulandia
-Proyecto semestral de perfulandia
+# Perfulandia SPA 
 
-Caso:
+Proyecto semestral de **Perfulandia SPA**, una plataforma digital-first que permite a los clientes explorar fragancias y gestionar sus pedidos en un entorno moderno y eficiente. Este prototipo implementa un esqueleto funcional utilizando **React**, **React Bootstrap** y pruebas unitarias con **Jest**.
 
-Perfulandia SPA
-Definición: Perfulandia busca expandir su marca de perfumes hacia un modelo digital-first,
-donde los clientes puedan personalizar fragancias y recibir recomendaciones mediante
-algoritmos de preferencia. La empresa quiere integrar experiencias inmersivas de compra
-online con un sistema de gestión eficiente, manteniendo procesos sostenibles en empaques
-y distribución.
-Entidades:
-● Perfume
-● Categoría (Fragancia, Tamaño, Género)
-● Cliente
-● Pedido
-● Reseña
+## Requisitos del Proyecto Implementados
 
-Instrucciones:
+### 1. Páginas con Rutas (React Router)
+La aplicación cuenta con un sistema de navegación completo que incluye las siguientes rutas:
+* **Home (`/`)**: Página principal con carrusel informativo.
+* **Catálogo de Perfumes (`/perfumes`)**: Listado general de productos.
+* **Detalle de Producto (`/perfumes/:id`)**: Información específica de cada fragancia.
+* **Autenticación (`/login` y `/register`)**: Gestión de acceso para usuarios y administradores.
+* **Carrito y Pago (`/cart` y `/checkout`)**: Flujo completo de compra.
+* **Perfil (`/profile`)**: Ruta privada para usuarios autenticados.
+* **Panel Admin (`/admin/perfumes`)**: Ruta protegida para la gestión de inventario.
 
-Utilizando como referencia el proyecto compartido por el docente: https://github.com/profe-robert/react-app-completa, implementar prototipo (esqueleto) de la aplicación de su proyecto semestral. Recuerde implementar el diseño con componentes de react bootstrap, ejemplos disponibles en: https://react-bootstrap.netlify.app/
+### 2. Componentes de React Bootstrap
+Se diseñó la interfaz utilizando componentes de la librería **React Bootstrap** para asegurar un diseño responsivo y profesional:
+* **NavBar**: Barra de navegación dinámica con integración de carrito y estado de sesión.
+* **Carousel**: Banner interactivo en la página de inicio para destacar promociones.
+* **CartDrawer**: Un componente de tipo "Drawer" para visualizar el carrito de compras sin abandonar la página actual.
 
+### 3. Gestión de Estado y Context (State/Context)
+Se implementaron dos contextos globales para manejar variables y funciones de la aplicación:
+* **AuthContext**: Maneja el estado de autenticación (`token`, `isAdmin`), permitiendo controlar el acceso a rutas privadas y personalizar la experiencia del usuario.
+* **CartContext**: Gestiona una variable de estado (`cart`) y funciones críticas como `addToCart`, `removeFromCart` y `updateQty`. También calcula automáticamente los totales (subtotal, IVA del 19% y envío).
 
+### 4. Tests Unitarios (Jest)
+Se implementaron un total de **7 tests unitarios** distribuidos en 3 páginas para validar la robustez del código:
+* **Home.test.jsx**: Verifica el renderizado del carrusel y la estructura de contenedores Bootstrap.
+* **Login.test.jsx**: Valida el montaje del formulario, la detección de errores en campos obligatorios y la simulación de inicio de sesión exitoso.
+* **Perfumes.test.jsx**: Comprueba la carga de productos y el funcionamiento de los filtros por categoría.
 
-Mínimo debe tener:
+## Tecnologías y Scripts
 
-3 páginas con ruta.
-3 componentes.
-manejar una variable y una función, al menos desde el state (context).
-implementar al menos 3 test unitarios con Jest en al menos dos págnas (6 test mínimo en toda la aplicación).
+Este proyecto fue creado con **Create React App**.
 
-
-Suba su proyecto comprimido en .zip a esta actividad SIN NODE-MODULES por favor.
-
-Pa iniciar sesión en git xd
-
-git config --global user.name "John Doe"
-
-git config --global user.email johndoe@example.com
-
-link informe:
-
-https://docs.google.com/document/d/13qzGnO3i0_-Iq7hHQQZYeRhjsIE0FHYY6h--uANhz9Q/edit?tab=t.0
+* **Iniciar la App**: `npm start`
+* **Ejecutar Tests**: `npm test`
+* **Construir para Producción**: `npm run build`
