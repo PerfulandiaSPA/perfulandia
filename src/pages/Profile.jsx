@@ -72,9 +72,6 @@ const ProfileScreen = () => {
 
             {/* Botones de Acción */}
             <div className="d-flex flex-column flex-md-row gap-3 justify-content-center">
-              <Button variant="outline-dark" className="btn-profile-action d-flex align-items-center justify-content-center gap-2">
-                <IconSettings /> Configuración
-              </Button>
 
               <Button
                 variant="dark"
